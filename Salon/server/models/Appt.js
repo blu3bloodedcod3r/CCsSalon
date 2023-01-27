@@ -14,16 +14,14 @@ const apptSchema = new Schema({
     message: {
         type: String,
     },
-    user_id: {
-        type: Number,
+    user: {
+        type: Schema.Types. ObjectId,
         ref: 'User',
         required: true,
-        //Key=id in components
     },
-    service_id: {
-        type: Number,
+    service: { 
+        type: Schema.Types. ObjectId,
         ref: 'Service',
-        //Key=id in components
     },
 });
 

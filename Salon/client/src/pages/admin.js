@@ -1,4 +1,6 @@
 import React from 'react';
+import apptPicker from '../components/Appointment-picker/appointment-picker'
+import User from './User'
 
 export default function Admin() {
     return (

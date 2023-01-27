@@ -6,7 +6,7 @@ export default function modifyServcies(service) {
         <div className="card">
             <img src="/assets/{{filename}}" className="card-img-top" alt="Service Picture Placeholder"/>
             <div className="card-body">
-                <h5 className="card-title"><strong>{user.name}</strong></h5>
+                <h5 className="card-title"><strong></strong></h5>
                 <p className="card-text">
                 <ul>
                 <li>Description: {service.description}</li>

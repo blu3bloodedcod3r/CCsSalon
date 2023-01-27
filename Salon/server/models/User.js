@@ -2,14 +2,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
+const bcrypt = require('bcrypt');
+const Aptt = require('./Appt');
 
 const UserSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  name: {
+   name: {
     type: String,
     required: true,
   },
@@ -22,12 +19,13 @@ const UserSchema = new Schema({
     password: {
       type: String,
       required: true,
+      minlength: 6
   },
   // email validation status
     status: {
-    //   type: String, 
+    type: String, 
       // enum: ['Pending', 'Active'],
-      // default: 'Pending'
+      default: 0, // default: 'Pending'
     },
   },
 );

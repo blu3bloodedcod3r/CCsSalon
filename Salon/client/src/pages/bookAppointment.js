@@ -6,37 +6,36 @@ import {userId, name} from '../pages/user'
 
 export default function BookAppt() {
     return (
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-6 offset-md-3 border p-4 shadow bg-light apt-box">
-                    <div class="col-12">
-                        <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Appointment Form</h3>
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-md-6 offset-md-3 border p-4 shadow bg-light apt-box">
+                    <div className="col-12">
+                        <h3 className="fw-normal text-secondary fs-4 text-uppercase mb-4">Appointment Form</h3>
                     </div>
                     <form id="apptForm" action="">
-                        <div class="row g-3">
-                            <div class="col-md-12">
-                                <input type="email" id="email" class="form-control" placeholder="Enter Email">
+                        <div className="row g-3">
+                            <div className="col-md-12">
+                                <input type="email" id="email" className="form-control" placeholder="Enter Email"/>
                             </div>
-                            <div class="col-md-6">
-                                <input type="date" id="date" class="form-control" placeholder="Enter Date">
+                            <div className="col-md-6">
+                                <input type="date" id="date" className="form-control" placeholder="Enter Date"/>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" id="time-1" class="form-control" aria-live="assertive" aria-label="Use up or down arrow keys to change time">
+                            <div className="col-md-6">
+                                <input type="text" id="time-1" className="form-control" aria-live="assertive" aria-label="Use up or down arrow keys to change time"/>
                             </div>
-                            <div class="col-12">
-                                <select class="form-select" id="description" aria-label="Default select example">
+                            <div className="col-12">
+                                <select className="form-select" id="description" aria-label="Default select example">
                                     <option selected>Select Service</option>
                                     {services}
                                     <option value={user.id}>{user.name}</option>
-            
                                 </select>
                             </div>
-                            <div class="col-12">
-                                <textarea class="form-control" id='message' placeholder="Message"></textarea>
+                            <div className="col-12">
+                                <textarea className="form-control" id='message' placeholder="Message"></textarea>
                             </div>
-                            <div class="col-12 mt-3">                        
-                                <button type="submit" class="btn btn-primary float-end">Book Appointment</button>
-                                <button type="button" class="btn btn-outline-secondary float-end me-2">Cancel</button>
+                            <div className="col-12 mt-3">                        
+                                <button type="submit" className="btn btn-primary float-end">Book Appointment</button>
+                                <button type="button" className="btn btn-outline-secondary float-end me-2">Cancel</button>
                             </div>
                         </div>
                     </form>

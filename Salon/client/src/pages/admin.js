@@ -2,16 +2,16 @@ import React from 'react';
 
 export default function Admin() {
     return (
-        <div class="modifyServices">
+        <div className="modifyServices">
                 <a href="/admin/services">
-                <button class="btn btn-primary mod-btn" id="modify" >Add / Modify 
+                <button className="btn btn-primary mod-btn" id="modify" >Add / Modify 
                 Services</button>
                 </a>
         </div>,
 
-        <div class="col-md-12 appt-list mt-5">
+        <div className="col-md-12 appt-list mt-5">
             <h3>Current Appointments</h3>
-            <table class="table table-bordered">
+            <table className="table table-bordered">
                 <thead>
                     <tr>
                     <th scope="col" >Date</th>
@@ -21,7 +21,7 @@ export default function Admin() {
                     <th scope="col" >Message</th>
                     </tr>
                 </thead>
-                {appts as |appt|}
+                {appts}
                 <tbody>
                     <tr>
                     <th scope="row">{date}</th>

@@ -1,4 +1,4 @@
-const mongoose = require('monogoose');
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -14,11 +14,11 @@ const apptSchema = new Schema({
     message: {
         type: String,
     },
-    user: {
-        type: Schema.Types. ObjectId,
-        ref: 'User',
-        required: true,
-    },
+    // user: {
+    //     type: Schema.Types. ObjectId,
+    //     ref: 'User',
+    //     required: true,
+    // },
     service: { 
         type: Schema.Types. ObjectId,
         ref: 'Service',
@@ -26,6 +26,6 @@ const apptSchema = new Schema({
 });
 
 
-const Appt = mongoose.model('Appt', productSchema);
+const Appt = mongoose.model('Appt', apptSchema);
 
 module.exports = Appt;

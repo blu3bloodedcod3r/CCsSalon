@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Aptt = require('./Appt');
+const Appt = require('./Appt')
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
    name: {
     type: String,
     required: true,
@@ -27,6 +26,7 @@ const UserSchema = new Schema({
       // enum: ['Pending', 'Active'],
       default: 0, // default: 'Pending'
     },
+    appts: [Appt.schema]
   },
 );
 
@@ -45,6 +45,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const User = model('User', UserSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = User
+module.exports = User;

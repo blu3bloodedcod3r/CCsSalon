@@ -30,9 +30,6 @@ const UserSchema = new Schema({
   },
 );
 
-<<<<<<< HEAD
-const User = mongoose.model('User', UserSchema);
-=======
 // hash user password
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
@@ -49,6 +46,5 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const User = model('User', UserSchema);
->>>>>>> e87dcb3e320971bc3bd4683bd7bef65896726536
 
 module.exports = User

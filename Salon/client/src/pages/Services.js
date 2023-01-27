@@ -1,10 +1,9 @@
-import WS from "./images/WS";
-import BS from "./images/BS";
-import HT from "./images/HT";
-import MH from "./images/MH";
-import MS from "./images/MS";
-import WH from "./images/WH";
-
+import WS from "./images/WS.png";
+import BS from "./images/BS.png";
+import HT from "./images/HT.png";
+import MH from "./images/MH.png";
+import MS from "./images/MS.png";
+import WH from "./images/WH.png"; 
 
 export const services = [
 

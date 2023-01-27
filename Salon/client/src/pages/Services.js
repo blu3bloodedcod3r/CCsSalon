@@ -1,7 +1,7 @@
 import WS from "./images/WS.png";
 import BS from "./images/BS.png";
-import HT from "./images/HT.png";
-import MH from "./images/MH.png";
+import HT from "./images/HT.jpg";
+import MH from "./images/MH.jpg";
 import MS from "./images/MS.png";
 import WH from "./images/WH.png"; 
 

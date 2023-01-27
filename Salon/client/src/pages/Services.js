@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Product from "./home";
+import Services from "./home";
 
 import WS from "./images/WS";
 import BS from "./images/BS";
@@ -11,7 +11,7 @@ import WH from "./images/WH";
 
 export default function Products() {
 
-    const [products] = useState([
+    const [services] = useState([
         {
         name: "Women's Styling",
         image: WS,

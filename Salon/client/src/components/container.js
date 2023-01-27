@@ -1,4 +1,11 @@
-
+import Header from './header';
+import Admin from '../pages/admin';
+import Book from '../pages/book';
+import Home from '../pages/home';
+import Login from '../pages/login';
+import ModifyServices from '../pages/modifyServices';
+import SignUp from '../pages/signup';
+import User from '../pages/user';
 
 
 export default function Container() {
@@ -21,7 +28,7 @@ export default function Container() {
         return <Admin />;
       }
       if (currentPage === 'AdminAdd') {
-        return <AdminAdd />;
+        return <ModifyServices />;
       }
       return <User />;
     };

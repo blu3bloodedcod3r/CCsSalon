@@ -1,16 +1,10 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const bcrypt = require('bcrypt');
+const Aptt = require('./Appt');
 
 const UserSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  // phone: {
-    type: Number,
-  // },
   email: {
     type: String,
     required: true,
@@ -20,16 +14,17 @@ const UserSchema = new Schema({
     password: {
       type: String,
       required: true,
+      minlength: 6
   },
   // email validation status
     status: {
-    //   type: String, 
+    type: String, 
       // enum: ['Pending', 'Active'],
-      // default: 'Pending'
+      default: 0, // default: 'Pending'
     },
   },
 );
 
-const User = model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User

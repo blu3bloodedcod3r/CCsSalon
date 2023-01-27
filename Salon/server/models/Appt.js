@@ -1,40 +1,33 @@
-const mongoose = require('mongoose');
+const mongoose = require('monogoose');
 
 const { Schema } = mongoose;
 
 const apptSchema = new Schema({
-    id: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-      // primaryKey: true,
-      // autoIncrement: true,
-    },
     date: {
-      type: DataTypes.DATEONLY,
-      // allowNull: false
+        type: Date,
+        default: Date.now,
     },
     time: {
-        type: DataTypes.DATE,
-        // allowNull: false,
+        type: Date,
+        default: Date.now,
     },
     message: {
-      type: DataTypes.TEXT,
+        type: String,
     },
     user_id: {
-      type: DataTypes.INTEGER,
-      // reference: {
-      //   model: 'user',
-      //   key: 'id'
-      },
+        type: Number,
+        ref: 'User',
+        required: true,
+        //Key=id in components
     },
     service_id: {
-      type: DataTypes.INTEGER,
-      // reference: {
-      //   model: 'services',
-      //   key: 'id'
-      },
-)
+        type: Number,
+        ref: 'Service',
+        //Key=id in components
+    },
+});
+
 
 const Appt = mongoose.model('Appt', productSchema);
 
-module.exports = Appt
+module.exports = Appt;

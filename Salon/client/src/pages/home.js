@@ -1,6 +1,9 @@
 import React from 'react';
+import { services } from './Services';
 
-export default function Service(service) {
+export default function Service() {
+
+    const service = services[0]
 
     return (
         <div className="card">

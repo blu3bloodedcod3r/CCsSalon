@@ -1,3 +1,5 @@
+@import '~appointment-picker/css/appointment-picker';
+
 :root {
     --bgcdark: #231F20;
     --bgclight: #EAEAEA;

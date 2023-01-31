@@ -1,7 +1,463 @@
 import React from 'react';
+import AppointmentPicker from 'appointment-picker';
+import '../../../node_modules/appointment-picker/dist/appointment-picker.css';
 
-export default function apptPicker() {
-    return (
-    !function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof define&&define.amd?define("appointment-picker",[],function(){return t()}):e.AppointmentPicker=t()}(this,function(){"use strict";var e=function(e,t){this.options={interval:60,minTime:0,maxTime:24,startTime:0,endTime:24,disabled:[],mode:"24h",large:!1,leadingZero:!1,allowReset:!0,title:"Timepicker",templateInner:'<li class="appo-picker-list-item {{disabled}}"><input type="button" tabindex="-1" value="{{time}}" {{disabled}}></li>',templateOuter:'<span class="appo-picker-title">{{title}}</span><ul class="appo-picker-list">{{innerHtml}}</ul>',timeFormat12:"H:M apm",timeFormat24:"H:M"},this.el=e,this.picker=null,this.isOpen=!1,this.isInDom=!1,this.time={},this.intervals=[],this.disabledArr=[],this.displayTime="",this.selectionEventFn=function(e){var t=this;if(!e.target.value)return;this.setTime(e.target.value),this.el.focus(),setTimeout(function(){t.close(null)},100)}.bind(this),this.changeEventFn=function(){this.setTime(this.el.value)}.bind(this),this.clickEventFn=function(){this.open()}.bind(this),this.closeEventFn=this.close.bind(this),this.openEventFn=this.open.bind(this),this.keyEventFn=function(e){var t=this.picker.querySelector('input[type="button"]:not([disabled])'),i=this.picker.querySelector("input.is-selected"),s=null;switch(e.keyCode){case 13:case 27:this.close(null);break;case 38:s=i?r(i.parentNode,-1):t.parentNode;break;case 40:s=i?r(i.parentNode,1):t.parentNode}s&&!s.firstChild.disabled&&(s.firstChild.classList.add("is-selected"),i&&i.classList.remove("is-selected"),this.setTime(s.firstChild.value))}.bind(this),this.bodyFocusEventFn=function(e){if(!this.isOpen)return;this.close(e)}.bind(this),function(e,t,i){for(var n in i)e.options[n]=i[n];if(!e.el)return;if(void 0!==e.el.length)return void console.warn("appointment-picker: pass only one dom element as argument");if(e.options.interval>60)return void console.warn("appointment-picker: the maximal interval is 60");e.disabledArr=e.options.disabled.map(function(e){return s(e)});for(var r=0;r<60/e.options.interval;r++)e.intervals[r]=r*e.options.interval;e.setTime(e.el.value),t.addEventListener("keyup",e.keyEventFn),t.addEventListener("change",e.changeEventFn),t.addEventListener("focus",e.openEventFn)}(this,e,t||{})};function t(e,t,i,s,n){var r=!1;return!(e<i.minTime||e>i.maxTime||e>24)&&(!(e===i.maxTime&&t>0)&&(!(s.indexOf(t)<0)&&(n.forEach(function(i,s){i.h===e&&i.m===t&&(r=!0)}),!r)))}function i(e){return/^[0-9]{1}$/.test(e)?"0"+e:e}function s(e){if(e){var t=e.match(/^\s*([\d]{1,2})\D?([\d]{2})\W?(a|p)?.*$/i);if(t){var i=Number(t[1]),s=Number(t[2]),n=t[3];return/p/i.test(n)&&12!==i?i+=12:/a/i.test(n)&&12===i&&(i=0),{h:i,m:s}}}}function n(e,t,s,n,r){var o=e;return n&&(e>12?o=e-12:0==e&&(o=12),s=s.replace(e<12?/p/i:/a/i,"")),s.replace("H",r?i(o):o).replace("M",i(t))}function r(e,t){if(!e)return null;var i=t<0?e.previousElementSibling:e.nextElementSibling;return i&&i.className.indexOf("disabled")<0?i:r(i,t)}function o(e,t,i,s){var n=document.createEvent("Event");n.initEvent(t+".appo.picker",!0,!0),n.time=i,n.displayTime=s,e.dispatchEvent(n)}return e.prototype.render=function(){if(this.isOpen&&this.isInDom){var e=this.el.offsetTop+this.el.offsetHeight,t=this.el.offsetLeft,i=this.picker.querySelector("input.is-selected");if(this.picker.classList.add("is-open"),this.el.classList.add("is-expanded"),i&&i.classList.remove("is-selected"),this.time.hasOwnProperty("h")){var s=this.picker.querySelector('[value="'+this.displayTime+'"]');s&&s.classList.add("is-selected")}this.picker.style.top=e+"px",this.picker.style.left=t+"px"}else this.isInDom&&(this.picker.classList.remove("is-open"),this.el.classList.remove("is-expanded"))},e.prototype.open=function(){var e=this;this.isOpen||(this.isInDom||(this.picker=function(e){var i=document.createElement("div");return i.innerHTML=function(e,i,s){for(var r=e.startTime,o=e.endTime,l="",a="12h"===e.mode,c=a?e.timeFormat12:e.timeFormat24,h=r;h<o;h++)for(var p=0;p<i.length;p++){var d=i[p],m=!t(h,d,e,i,s),u=n(h,d,c,a,e.leadingZero);l+=e.templateInner.replace("{{time}}",u).replace(/{{disabled}}/gi,m?"disabled":"")}return e.templateOuter.replace("{{classes}}",e.large?"is-large":"").replace("{{title}}",e.title).replace("{{innerHtml}}",l)}(e.options,e.intervals,e.disabledArr),i.className="appo-picker"+(e.options.large?" is-large":""),i.setAttribute("aria-hidden",!0),e.el.insertAdjacentElement("afterend",i),i}(e),this.isInDom=!0),this.isOpen=!0,this.render(),this.picker.addEventListener("click",this.selectionEventFn),this.picker.addEventListener("keyup",this.keyEventFn),this.el.removeEventListener("click",this.clickEventFn),o(this.el,"open",this.time,this.displayTime),setTimeout(function(){document.body.addEventListener("click",e.closeEventFn),document.body.addEventListener("focus",e.bodyFocusEventFn,!0)},100))},e.prototype.close=function(e){if(this.isOpen){if(Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),e){var t=e.target;if(t.isEqualNode(this.el))return;for(;t;){if(t.matches(".appo-picker"))return;t=t.parentElement}}this.isOpen=!1,this.render(),this.picker.removeEventListener("click",this.selectionEventFn),this.picker.removeEventListener("keyup",this.keyEventFn),document.body.removeEventListener("click",this.closeEventFn),document.body.removeEventListener("focus",this.bodyFocusEventFn,!0),this.el.addEventListener("click",this.clickEventFn),o(this.el,"close",this.time,this.displayTime)}},e.prototype.destroy=function(){this.close(null),this.picker&&(this.picker.parentNode.removeChild(this.picker),this.picker=null),this.el.removeEventListener("focus",this.openEventFn),this.el.removeEventListener("keyup",this.keyEventFn),this.el.removeEventListener("change",this.changeEventFn),this.el.removeEventListener("click",this.clickEventFn)},e.prototype.setTime=function(e){var i=s(e),r="24h"===this.options.mode,l=r?this.options.timeFormat24:this.options.timeFormat12;if(i||e||!this.options.allowReset){if(i){var a=t(i.h,i.m,this.options,this.intervals,this.disabledArr),c=this.options.leadingZero;a&&(this.time=i,this.displayTime=n(this.time.h,this.time.m,l,!r,c),o(this.el,"change",this.time,this.displayTime))}}else this.time={},this.displayTime="",o(this.el,"change",this.time,this.displayTime);this.render(),this.el.value=this.displayTime},e.prototype.getTime=function(){return{h:this.time.h,m:this.time.m,displayTime:this.displayTime}},e})
-    )
-}
+(function (root, factory) {
+	if (typeof exports === 'object') {
+		module.exports = factory(root); // CommonJS (Node, Browserify, Webpack)
+	} else if (typeof define === 'function' && define.amd) {
+		define('appointment-picker', [], function () {
+			return factory(root); // AMD (RequireJS)
+		});
+	} else {
+		root.AppointmentPicker = factory(root); // Browser globals (root = window)
+	}
+}(this, function() {
+	'use strict';
+
+	/**
+	 * Constructor
+	 * @param {HTMLElement} el - reference to the time input field
+	 * @param {Object} options - user defined options
+	 */
+	var AppointmentPicker = function(el, options) {
+		this.options = {
+			interval: 60, // Appointment intervall in minutes
+			minTime: 0, // min pickable hour (1-24)
+			maxTime: 24, // max pickable hour (1-24)
+			startTime: 0, // min displayed hour (1-24)
+			endTime: 24, // max displayed hour (1-24)
+			disabled: [], // Array of disabled times, i.e. ['10:30', ...]
+			mode: '24h', // Whether to use 24h or 12h system
+			large: false, // Whether large button style
+			static: false, // Whether to position static (always open)
+			leadingZero: false, // Whether to zero pad hour (i.e. 07:15)
+			allowReset: true, // Whether a time can be resetted once entered
+			title: 'Timepicker' // Title in opened state
+		};
+		this.template = {
+			inner: '<li class="appo-picker-list-item {{disabled}}">' +
+				'<input type="button" tabindex="-1" value="{{time}}" {{disabled}}></li>',
+			outer: '<span class="appo-picker-title">{{title}}</span>' +
+				'<ul class="appo-picker-list">{{innerHtml}}</ul>',
+			time12: 'H:M apm',
+			time24: 'H:M'
+		};
+
+		this.el = el;
+		this.picker = null;
+		this.isOpen = false;
+		this.isInDom = false;
+		this.time = {}; // { h: '18', m: '30' }
+		this.intervals = []; // [0, 15, 30, 45]
+		this.disabledArr = [];
+		this.displayTime = ''; // '6:30pm'
+		this.selectionEventFn = _onselect.bind(this);
+		this.changeEventFn = _onchange.bind(this);
+		this.clickEventFn = _onInputClick.bind(this);
+		this.closeEventFn = this.close.bind(this);
+		this.openEventFn = this.open.bind(this);
+		this.keyEventFn = _onKeyPress.bind(this);
+		this.bodyFocusEventFn = _onBodyFocus.bind(this);
+
+		initialize(this, el, options || {});
+	};
+
+	/**
+	 * Initialize the picker, merge default options and check for errors
+	 * @param {Object} _this - this view reference
+	 * @param {HTMLElement} el - reference to the time input field
+	 * @param {Object} options - user defined options
+	 */
+	function initialize(_this, el, options) {
+		for (var opt in options) {
+			_this.options[opt] = options[opt];
+		}
+		if (!_this.el) return;
+
+		if (_this.el.length !== undefined) {
+			console.warn('appointment-picker: pass only one dom element as argument');
+			return;
+		} else if (_this.options.interval > 60) {
+			console.warn('appointment-picker: the maximal interval is 60');
+			return;
+		}
+		// Create 2-dim array holding all disabled times
+		_this.disabledArr = _this.options.disabled.map(function(item) {
+			return _parseTime(item);
+		});
+
+		// Create array holding all minute permutations
+		for (var j = 0; j < 60 / _this.options.interval; j++) {
+			_this.intervals[j] = j * _this.options.interval;
+		}
+
+		_this.setTime(_this.el.value);
+		el.addEventListener('keyup', _this.keyEventFn);
+		el.addEventListener('change', _this.changeEventFn);
+
+		if (!_this.options.static) { // Default positioning 
+			el.addEventListener('focus', _this.openEventFn);
+		} else {
+			// Render the picker in position static, don't register onOpen event
+			_this.picker = _build(_this);
+			_this.picker.classList.add('is-position-static');
+			_this.picker.addEventListener('click', _this.selectionEventFn);
+			_this.isOpen = true;
+
+			_this.render();
+		}
+	}
+
+	// Attach visibility classes and set the picker's position
+	AppointmentPicker.prototype.render = function() {
+		if (this.isOpen) {
+			var bottom = this.el.offsetTop + this.el.offsetHeight;
+			var left = this.el.offsetLeft;
+			var oldSelectedEl = this.picker.querySelector('input.is-selected');
+
+			this.picker.classList.add('is-open');
+
+			if (oldSelectedEl) {
+				oldSelectedEl.classList.remove('is-selected');
+			}
+			if (this.time.hasOwnProperty('h')) {
+				var selectedEl = this.picker.querySelector('[value="' + this.displayTime + '"]');
+				
+				if (selectedEl) {
+					selectedEl.classList.add('is-selected');
+				}
+			}
+			if (!this.options.static) {
+				this.picker.style.top = bottom + 'px';
+				this.picker.style.left = left + 'px';
+			}
+		} else {
+			this.picker.classList.remove('is-open');
+		}
+	};
+
+	// Opens the picker, registers further click events
+	AppointmentPicker.prototype.open = function() {
+		var _this = this;
+
+		if (this.isOpen) return;
+
+		if (!this.isInDom) {
+			this.picker = _build(_this);
+			this.isInDom = true;
+		}
+
+		this.isOpen = true;
+		this.render();
+		this.picker.addEventListener('click', this.selectionEventFn);
+		this.picker.addEventListener('keyup', this.keyEventFn);
+		this.el.removeEventListener('click', this.clickEventFn);
+
+		// Delay document click listener to prevent picker flashing
+		setTimeout(function() {
+			document.body.addEventListener('click', _this.closeEventFn);
+			document.body.addEventListener('focus', _this.bodyFocusEventFn, true);
+		}, 100);
+	};
+
+	/**
+	 * Close the picker and unregister attached events
+	 * @param {Event|null} e - i.e. mouse click event
+	 */
+	AppointmentPicker.prototype.close = function(e) {
+		if (!this.isOpen) return;
+
+		// Polyfil matches selector if missing
+		if (!Element.prototype.matches)
+			Element.prototype.matches = Element.prototype.msMatchesSelector ||
+				Element.prototype.webkitMatchesSelector;
+		if (e) {
+			var el = e.target;
+			if (el.isEqualNode(this.el)) return;
+			// Check if the clicked target is inside the picker
+			while (el) {
+				if (el.matches('.appo-picker')) {
+					return;
+				} else {
+					el = el.parentElement;
+				}
+			}
+		}
+		// The target was outside or didn't exist, close picker
+		this.isOpen = false;
+		this.render();
+
+		this.picker.removeEventListener('click', this.selectionEventFn);
+		this.picker.removeEventListener('keyup', this.keyEventFn);
+		document.body.removeEventListener('click', this.closeEventFn);
+		document.body.removeEventListener('focus', this.bodyFocusEventFn, true);
+		// Add an event listener to open on click regardless of mouse focus
+		this.el.addEventListener('click', this.clickEventFn);
+
+		_dispatchEvent(this.el, 'close', this.time);
+	};
+
+	/**
+	 * Listener for an appointment selection
+	 * @param {Event} e - mouse click or keyboard event
+	 */
+	function _onselect(e) {
+		var _this = this;
+		if (!e.target.value) return;
+
+		this.setTime(e.target.value);
+		
+		if (_this.options.static) {
+			this.render();
+		} else {
+			this.el.focus();
+			setTimeout(function() { _this.close(null); }, 100);
+		}
+	}
+
+	// Handles manual input changes on input field
+	function _onchange() {
+		this.setTime(this.el.value);
+	}
+
+	/**
+	 * Move focus forward and backward on keyboard arrow key, close picker on ESC
+	 * @param {Event} e - keyboard event
+	 */
+	function _onKeyPress(e) {
+		var first = this.picker.querySelector('input[type="button"]:not([disabled])');
+		var selected = this.picker.querySelector('input.is-selected');
+		var next = null;
+
+		switch (e.keyCode) {
+			case 13: // Enter
+			case 27: // ESC
+				this.close(null);
+				break;
+			case 38: // Up Arrow
+				next = selected ? _getNextSibling(selected.parentNode, -1) : first.parentNode;
+				break;
+			case 40: // Down Arrow
+				next = selected ? _getNextSibling(selected.parentNode, 1) : first.parentNode;
+				break;
+			default:
+		}
+
+		if (next && !next.firstChild.disabled) {
+			next.firstChild.classList.add('is-selected');
+			if (selected)
+				selected.classList.remove('is-selected');
+			this.setTime(next.firstChild.value);
+		}
+	}
+
+	// Close the picker on document focus, usually by hitting TAB
+	function _onBodyFocus(e) {
+		if (!this.isOpen) return;
+		this.close(e);
+	}
+
+	// Opens the picker, useful if the input has focus, still to be able to open the picker
+	function _onInputClick() {
+		this.open();
+	}
+
+	// Remove the picker's node from the dom and unregister all events
+	AppointmentPicker.prototype.destroy = function() {
+		this.close(null);
+
+		if (this.picker) {
+			this.picker.parentNode.removeChild(this.picker);
+			this.picker = null;
+		}
+		this.el.removeEventListener('focus', this.openEventFn);
+		this.el.removeEventListener('keyup', this.keyEventFn);
+		this.el.removeEventListener('change', this.changeEventFn);
+		this.el.removeEventListener('click', this.clickEventFn);
+	};
+
+	/**
+	 * Sets the pickers current time variable after validating for min/max
+	 * @param {String} value - time input string, i.e. '12:15pm'
+	 */
+	AppointmentPicker.prototype.setTime = function(value) {
+		var time = _parseTime(value);
+		var is24h = this.options.mode === '24h';
+		var timePattern = is24h ? this.template.time24 : this.template.time12;
+
+		if (!time && !value && this.options.allowReset) { // Empty string, reset time
+			this.time = {};
+			this.displayTime = '';
+            _dispatchEvent(this.el, 'change', this.time);
+		} else if (time) { // A time format was recognized
+			var hour = time.h;
+			var minute = time.m;
+			var isValid = _isValid(hour, minute, this.options, this.intervals, this.disabledArr);
+			var pad0 = this.options.leadingZero;
+
+			if (isValid) {
+				this.time = time;
+				this.displayTime = _printTime(this.time.h, this.time.m, timePattern, !is24h, pad0);
+				_dispatchEvent(this.el, 'change', this.time);
+			}
+		}
+		this.el.value = this.displayTime;
+	};
+
+	// Time getter returns time as object
+	AppointmentPicker.prototype.getTime = function() {
+		return this.time;
+	};
+
+	/**
+	 * Checks validity using defined constraints
+	 * @returns {Boolean} true if valid
+	 */
+	function _isValid(hour, minute, opt, intervals, disabledArr) {
+		var inDisabledArr = false;
+		if (hour < opt.minTime || hour > opt.maxTime || hour > 24) { // Out of min/max
+			return false;
+		} else if (hour === opt.maxTime && minute > 0) {
+			return false; // h:[interval] is out of max
+		} else if (intervals.indexOf(minute) < 0) { // Min doesn't match any interval
+			return false;
+		}
+		disabledArr.forEach(function(item, i) { // h:m combination in disabled array
+			if (item.h === hour && item.m === minute)
+				inDisabledArr = true;
+		});
+
+		return !inDisabledArr ? true : false; // All valid
+	}
+
+	/**
+	 * Add a leading zero and convert to string
+	 * @param {Number} number - number that needs to be padded
+	 * @returns {String} i.e. '05'
+	 */
+	function _zeroPadTime(number) {
+		if (/^[0-9]{1}$/.test(number))
+			return '0' + number;
+		return number;
+	}
+
+	/**
+	 * @param {String} time - string that needs to be parsed, i.e. '11:15PM ' or '10:30 am'
+	 * @returns {Object|undefined} containing {h: hour, m: minute} or undefined if unrecognized
+	 * @see https://regexr.com/3heaj
+	 */
+	function _parseTime(time) {
+		var match = time.match(/^\s*([\d]{1,2}):([\d]{2})[\s]*([ap][m])?.*$/i);
+
+		if (match) {
+			var hour = Number(match[1]);
+			var minute = Number(match[2]);
+			var postfix = match[3];
+
+			if (/pm/i.test(postfix) && hour !== 12) {
+				hour += 12;
+			} else if (/am/i.test(postfix) && hour === 12) {
+				hour = 0;
+			}
+			
+			return { h: hour, m: minute };
+		}
+	}
+
+	/**
+	 * Create time considering am/pm conventions
+	 * @param {Number} hour 
+	 * @param {Number} minute
+	 * @param {String} pattern - used time format
+	 * @param {Boolean} isAmPmMode - false if 24h mode
+	 * @param {Boolean} padZero - adds leading zero to single-digit hour
+	 * @return {String} time string, i.e. '12:30 pm' 
+	 */
+	function _printTime(hour, minute, pattern, isAmPmMode, padZero) {
+		var displayHour = hour;
+
+		if (isAmPmMode) {
+			if (hour > 12) {
+				displayHour = hour - 12;
+			} else if (hour == 0) {
+				displayHour = 12;
+			}
+			pattern = pattern.replace(hour < 12 ? 'p' : 'a', '');
+		}
+
+		return pattern
+			.replace('H', padZero ? _zeroPadTime(displayHour) : displayHour)
+			.replace('M', _zeroPadTime(minute));
+	}
+
+	// Find next sibling of item that is not disabled (otherwise return null)
+	function _getNextSibling(item, direction) {
+		if (!item) return null; // Break condition for recursion
+
+		var next = direction < 0 ? item.previousElementSibling : item.nextElementSibling;
+		if (next && next.className.indexOf('disabled') < 0) {
+			return next;
+		} else { // If disabled class found, try the next sibling
+			return _getNextSibling(next, direction);
+		}
+	}
+
+	// Create a dom node containing the markup for the picker
+	function _build(_this) {
+		var node = document.createElement('div');
+		node.innerHTML = _assemblePicker(_this.options, _this.template, _this.intervals, _this.disabledArr);
+		node.className = ('appo-picker' + (_this.options.large ? ' is-large' : ''));
+		node.setAttribute('aria-hidden', true);
+		_this.el.insertAdjacentElement('afterend', node);
+
+		return node;
+	}
+
+	/**
+	 * Assemble the html containing each appointment represented by a button
+	 * @param {Object} opt - options (see above)
+	 * @param {Object} tpl - template (see above)
+	 * @param {Array} intervals - array holding interval permutations
+	 * @param {Array} disabledArr - array holding disabled times
+	 */
+	function _assemblePicker(opt, tpl, intervals, disabledArr) {
+		var start = opt.startTime;
+		var end = opt.endTime;
+		var inner = '';
+		var isAmPmMode = opt.mode === '12h';
+		var timePattern = isAmPmMode ? tpl.time12 : tpl.time24;
+
+		for (var hour = start; hour < end; hour++) { // Iterate hours start to end	
+			for (var j = 0; j < intervals.length; j++) { // Iterate minutes by possible intervals
+				var minute = intervals[j];
+				var isDisabled = !_isValid(hour, minute, opt, intervals, disabledArr);
+				var timeTemplate = _printTime(hour, minute, timePattern, isAmPmMode, opt.leadingZero);
+				// Replace timeTemplate placeholders with time and disabled flag
+				inner += tpl.inner
+					.replace('{{time}}', timeTemplate)
+					.replace(/{{disabled}}/ig, isDisabled ? 'disabled': '');
+			}
+		}
+
+		return tpl.outer
+			.replace('{{classes}}', opt.large ? 'is-large': '')
+			.replace('{{title}}', opt.title)
+			.replace('{{innerHtml}}', inner);
+	}
+
+	/**
+	 * Creates and triggers an event with attached time property
+	 * @param {HTMLElement} el - element reference
+	 * @param {String} name - event name
+	 * @param {Object} time - current time
+	 */
+	function _dispatchEvent(el, name, time) {
+		var event = document.createEvent('Event');
+		event.initEvent(name + '.appo.picker', true, true);
+		event.time = time;
+		el.dispatchEvent(event);
+	}
+
+	return AppointmentPicker;
+}));

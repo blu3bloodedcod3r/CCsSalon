@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { services } from './Services';
+import AppointmentPicker from 'appointment-picker';
 
 export default function Book() {
     
@@ -55,3 +56,6 @@ export default function Book() {
         </div>
     );
 };
+
+// <script src="./components/Appointment-picker/appointment-picker.min.js"></script>
+// <script src="js/appointment.js"></script>

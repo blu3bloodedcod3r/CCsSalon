@@ -11,7 +11,7 @@ const resolvers = {
     users: async () => {
       return await User.find();
     },
-    user: async (parent, args, context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('appts').populate({
           path: 'appts',
@@ -49,11 +49,10 @@ const resolvers = {
 
       return { token, user };
     },
-    makeAppt: async (parent, { name, time, message, service }, context) => {
-      console.log(context);
+    makeAppt: async (parent, { date, time, message, service }, context) => {
       if (context.user) {
-        const appt = new Appt({ name, time, message, service });
-
+        const appt = new Appt({ date, time, message, service });
+        console.log(appt)
         await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
 
         return appt;
@@ -71,19 +70,17 @@ const resolvers = {
     //   }
     //   throw new AuthenticationError("You need to be logged in!");
     // },
-    addServices: async (parent, args, context) => {
+
+    addServices: async (parent, {name, description, price, duration, filename}, context) => {
       if (context.user) {
-      const service = await Services.create(args);
-      return { service };
-    } 
-    throw new AuthenticationError("You need to be logged in!");
-  },
-    deleteServices: async (parent, { _id }, context) => {
+        return await Services.create({name, description, price, duration, filename});
+      }
+    },
+  
+    deleteServices: async (parent, { serviceId }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { Services: { _id: _id } } },
-          { new: true }
+        return Services.findOneAndDelete(
+        { $pull: { Services: { _id: serviceId } } },
         );
       }
       throw new AuthenticationError("You need to be logged in!");

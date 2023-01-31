@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import AppointmentPicker from 'appointment-picker';
 
 import Home from './pages/home';
-import User from './pages/User';
+import User from './pages/user';
 import Admin from './pages/admin';
 import Login from './pages/login';
 import Signup from './pages/signup';

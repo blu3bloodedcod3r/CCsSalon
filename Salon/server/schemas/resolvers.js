@@ -8,14 +8,20 @@ const resolvers = {
     services: async () => {
       return await Services.find();
     },
+    users: async () => {
+      return await User.find();
+    },
     user: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate('appts').populate({
+          path: 'appts',
+          populate: 'service'
+        });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     appts: async () => {
-      return await Appt.find();
+      return await (await Appt.find()).populate('service');
     }
   },
 
@@ -43,7 +49,45 @@ const resolvers = {
 
       return { token, user };
     },
-    
+    makeAppt: async (parent, { name, time, message, service }, context) => {
+      console.log(context);
+      if (context.user) {
+        const appt = new Appt({ name, time, message, service });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
+
+        return appt;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    // deleteAppt: async (parent, args, context) => {
+    //   console.log(args)
+    //   if (context.user) {
+    //     return User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { appts: { appt.id: appt.id } } },
+    //       { new: true }
+    //     );
+    //   }
+    //   throw new AuthenticationError("You need to be logged in!");
+    // },
+    addServices: async (parent, args, context) => {
+      if (context.user) {
+      const service = await Services.create(args);
+      return { service };
+    } 
+    throw new AuthenticationError("You need to be logged in!");
+  },
+    deleteServices: async (parent, { _id }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { Services: { _id: _id } } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   }    
 };
 

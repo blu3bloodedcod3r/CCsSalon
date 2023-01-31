@@ -30,7 +30,34 @@ function Nav() {
           </li>
         </ul>
       );
-    } else {
+    } 
+    else if (Auth.AdminloggedIn) {
+      return (
+        <ul className="flex-row">
+          <li className="mx-1">
+            <Link to="/signup">
+              Signup
+            </Link>
+          </li>
+          <li className="mx-1">
+          <a href="/" onClick={() => Auth.logout()}>
+              Logout
+            </a>
+          </li>
+          <li className="mx-1">
+            <Link to="/admin">
+              Admin Appointments
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/admin/services">
+              Add Services
+            </Link>
+          </li>
+        </ul>
+      );
+    }
+    else {
       return (
         <ul className="flex-row">
           <li className="mx-1">

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
-  // InMemoryCache,
+  InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
@@ -33,7 +33,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -69,10 +69,10 @@ function App() {
                 path="/user" 
                 element={<User />} 
               />
-              <Route 
+              {/* <Route 
                 path="/modifyServices" 
                 element={<modifyServices />} 
-              />
+              /> */}
               <Route 
                 path="/home" 
                 element={<Home />} 

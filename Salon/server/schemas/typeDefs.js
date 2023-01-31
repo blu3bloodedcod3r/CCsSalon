@@ -39,7 +39,7 @@ type Mutation {
 
   addUser(name: String!, email: String!, password: String!): Auth
 
-  makeAppt(date: String, time: String, message: String, service: ID!): Appt
+  makeAppt(date: String!, time: String!, message: String, service: ID!): Appt
 
   deleteAppt(_id: ID!): User 
 

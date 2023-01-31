@@ -2,20 +2,21 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
-  InMemoryCache,
+  // InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/home';
-import Detail from './pages/Detail';
-import NoMatch from './pages/NoMatch';
+import User from './pages/User';
+import Admin from './pages/admin';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
-import OrderHistory from './pages/OrderHistory';
+import Book from './pages/book';
+import modifyServices from './pages/modifyServices'
+import Nav from './components/Nav/index';
+// import { StoreProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,15 +59,27 @@ function App() {
               />
               <Route 
                 path="/appointment" 
-                element={<OrderHistory />} 
+                element={<Book />} 
               />
               <Route 
                 path="/services" 
-                element={<Detail />} 
+                element={<Services />} 
               />
               <Route
                 path="/user" 
-                element={<NoMatch />} 
+                element={<User />} 
+              />
+              <Route 
+                path="/modifyServices" 
+                element={<modifyServices />} 
+              />
+              <Route 
+                path="/home" 
+                element={<Home />} 
+              />
+              <Route 
+                path="/admin" 
+                element={<Admin />} 
               />
               <Route
                 path="*" 

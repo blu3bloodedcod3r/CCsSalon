@@ -8,15 +8,17 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import AppointmentPicker from 'appointment-picker';
+
 import Home from './pages/home';
-import User from './pages/User';
+import User from './pages/user';
 import Admin from './pages/admin';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Book from './pages/book';
 import modifyServices from './pages/modifyServices'
 import Nav from './components/Nav/index';
-// import { StoreProvider } from './utils/GlobalState';
+import { StoreProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -86,6 +88,15 @@ function App() {
                 element={<NoMatch />} 
               />
             </Routes>
+            <div>
+            {/* inserted appoinment-picker stuff 93-99 */}
+            <h1>{ title }</h1>
+            <h2>Embed into a React component</h2>
+            <div>
+                <label>Time</label>
+                <AppoPicker></AppoPicker>
+            </div>
+        </div>,
           </StoreProvider>
         </div>
       </Router>

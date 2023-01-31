@@ -51,4 +51,4 @@ MIT
 
 ## Features
 
-Our features include user being able to create a user login, will be able to book appointments (if logged in).
+Our features include user being able to create a user login, the ability to book appointments (if logged in) with an apoointment-picker provided by: https://www.npmjs.com/package/appointment-picker?activeTab=readme

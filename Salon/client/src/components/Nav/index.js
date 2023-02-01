@@ -1,6 +1,7 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import '../../pages/styles/style.css'
 
 function Nav() {
 
@@ -31,63 +32,30 @@ function Nav() {
         </ul>
       );
     } 
-    else if (Auth.AdminloggedIn) {
-      return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/signup">
-              Signup
-            </Link>
-          </li>
-          <li className="mx-1">
-          <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
-          </li>
-          <li className="mx-1">
-            <Link to="/admin">
-              Admin Appointments
-            </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/admin/services">
-              Add Services
-            </Link>
-          </li>
-        </ul>
-      );
-    }
     else {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/signup">
-              Signup
-            </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/login">
-              Login
-            </Link>
-          </li>
-        </ul>
+          <ul className="flex-row">
+            <li className="mx-1">
+              <Link to="/signup">
+                Signup
+              </Link>
+            </li>
+            <li className="mx-1">
+              <Link to="/login">
+                Login
+              </Link>
+            </li>
+          </ul>
       );
     }
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
-        </Link>
-      </h1>
-
       <nav>
-        {showNavigation()}
+        <section className="sidebar navcontainer">
+          {showNavigation()}
+        </section>
       </nav>
-    </header>
   );
 }
 

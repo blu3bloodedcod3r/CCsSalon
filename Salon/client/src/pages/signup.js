@@ -15,29 +15,31 @@ export default function SignUp() {
     }
 
 return (
-    <div className="page">
-        <form className="signup-form" onSubmit={SignUpSubmit}>            
-        <div className="mb-3">
-                <h3>Sign Up</h3>
-                <label className="form-label">Provide Email</label>
-                <input type="email" className="form-control" placeholder="name@example.com" id="signup-email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-            </div>
-
+    <aside className="main-content">
+        <div className="page">
+            <form className="signup-form" onSubmit={SignUpSubmit}>            
             <div className="mb-3">
-                <label for="validationTooltipUsername" className="form-label">Username</label>
-                <input type="text" className="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required value={Username} onChange={(e) => setUsername(e.target.value)}></input>
-            </div>
+                    <h3>Sign Up</h3>
+                    <label className="form-label">Provide Email</label>
+                    <input type="email" className="form-control" placeholder="name@example.com" id="signup-email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                </div>
 
-            <div className="mb-3">
-                <label for="signup-password" className="form-label">Password</label>
-                <input type="password" className="form-control" id="signup-password" value={PW} onChange={(e) => setPW(e.target.value)}></input>
-            </div>
-                        
-            <div className="mb-3 form-check">
-                <a href="/login">Already have a login? Go here to sign in!</a>
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-    </div>
+                <div className="mb-3">
+                    <label for="validationTooltipUsername" className="form-label">Username</label>
+                    <input type="text" className="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required value={Username} onChange={(e) => setUsername(e.target.value)}></input>
+                </div>
+
+                <div className="mb-3">
+                    <label for="signup-password" className="form-label">Password</label>
+                    <input type="password" className="form-control" id="signup-password" value={PW} onChange={(e) => setPW(e.target.value)}></input>
+                </div>
+                            
+                <div className="mb-3 form-check">
+                    <a href="/login">Already have a login? Go here to sign in!</a>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </aside>
     );
 };

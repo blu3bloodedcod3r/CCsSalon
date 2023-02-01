@@ -20,7 +20,7 @@ const apptSchema = new Schema({
     //     required: true,
     // },
     service: { 
-        type: Schema.Types. ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Services',
     },
 });

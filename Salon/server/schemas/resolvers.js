@@ -9,7 +9,7 @@ const resolvers = {
       return await Services.find();
     },
     users: async () => {
-      return await User.find();
+      return await User.find().populate('appts');
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -93,28 +93,30 @@ const resolvers = {
 
       return { token, user };
     },
-    makeAppt: async (parent, { date, time, message, service }, context) => {
+    makeAppt: async (parent, args, context) => {
       if (context.user) {
         console.log("context", context.user)
-        const appt = new Appt({ date, time, message, service });
+        const appt = await Appt.create(args);
         console.log("appt", appt)
         await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
 
-      return appt
+      return appt.populate('service')
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     deleteAppt: async (parent, { apptId }, context) => {
-      console.log(_id)
+      console.log('****apptId', apptId)
       if (context.user) {
-        return User.findOneAndUpdate(
+        console.log('context.user', context.user)
+        const userInfo = await User.findOneAndUpdate(
           { _id: context.user._id },
-
-          { $pull: { appts: { apptId: _id } } },
+          { $pull: { appts: { _id: apptId} }}, {new: true})
+        console.log('userInfo', userInfo)
+          // { $pull: { appts: { apptId: _id } } },
           // { new: true }
-        );
+        
       }
-      throw new AuthenticationError("You need to be logged in!");
+      // throw new AuthenticationError("You need to be logged in!");
     },
 
     addServices: async (parent, {name, description, price, duration, filename}, context) => {

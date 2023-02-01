@@ -21,6 +21,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     appts: async () => {
+
       return await (await Appt.find()).populate('service');
     },
     checkout: async (parent, args, context) => {  
@@ -94,25 +95,27 @@ const resolvers = {
     },
     makeAppt: async (parent, { date, time, message, service }, context) => {
       if (context.user) {
+        console.log("context", context.user)
         const appt = new Appt({ date, time, message, service });
-        console.log(appt)
+        console.log("appt", appt)
         await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
 
-        return appt;
+      return appt
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    // deleteAppt: async (parent, args, context) => {
-    //   console.log(args)
-    //   if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { appts: { appt.id: appt.id } } },
-    //       { new: true }
-    //     );
-    //   }
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
+    deleteAppt: async (parent, { apptId }, context) => {
+      console.log(_id)
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+
+          { $pull: { appts: { apptId: _id } } },
+          // { new: true }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
 
     addServices: async (parent, {name, description, price, duration, filename}, context) => {
       if (context.user) {

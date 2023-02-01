@@ -26,7 +26,9 @@ const userSchema = new Schema({
       // enum: ['Pending', 'Active'],
       default: 0, // default: 'Pending'
     },
-    appts: [Appt.schema]
+    appts: [
+      Appt.schema
+    ]
   },
 );
 

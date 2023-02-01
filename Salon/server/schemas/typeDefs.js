@@ -18,8 +18,8 @@ type Services {
 }
 type Appt {
   _id: ID
-  date: String
-  time: String
+  date: String!
+  time: String!
   message: String
   service: Services
 }
@@ -41,7 +41,7 @@ type Mutation {
 
   makeAppt(date: String!, time: String!, message: String, service: ID!): Appt
 
-  deleteAppt(_id: ID!): User 
+  deleteAppt(apptId: ID!): User 
 
   addServices(name: String!, description: String, price: String!, duration: String!, filename: String): Services
 

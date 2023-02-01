@@ -8,7 +8,7 @@ import WH from "./images/WH.png";
 export const services = [
 
         {
-        id: 1,
+        id: 0,
         name: "Women's Styling",
         image: WS,
         description: "Includes: wash and style",
@@ -16,7 +16,7 @@ export const services = [
         price: "$50 - $100 (depending on hair length)",
     },
     {
-        id: 2,
+        id: 1,
         name: "Men's Styling",
         image: MS,
         description: "Includes: wash and style",
@@ -24,7 +24,7 @@ export const services = [
         price: "$20-$50",
     },
     {
-        id: 3,
+        id: 2,
         name: "Women's Haircut",
         image: WH,
         description: "Includes: wash and cut",
@@ -32,7 +32,7 @@ export const services = [
         price: "$35",
     },
     {
-        id: 4,
+        id: 3,
         name: "Men's Haircut",
         image: MH,
         description: "Includes: wash and cut",
@@ -40,7 +40,7 @@ export const services = [
         price: "$25",
     },
     {
-        id: 5,
+        id: 4,
         name: "Beard Service",
         image: BS,
         description: "Includes: razor shave and warm towel after trim/cut",
@@ -48,7 +48,7 @@ export const services = [
         price: "$25 - $45",
     },
     {
-        id: 6,
+        id: 5,
         name: "Highlights & Tints",
         image: HT,
         description: "Includes: wash and style",

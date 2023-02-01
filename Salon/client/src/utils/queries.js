@@ -7,6 +7,12 @@ export const QUERY_USER = gql`
             name
             email
             status
+            appts {
+                _id
+                date
+                time
+                service
+            }
         }
     }
 `;
@@ -33,7 +39,7 @@ export const QUERY_APPT = gql`
         name
         description
         price
-        duraction
+        duration
         }        
     }
 `;

@@ -8,7 +8,7 @@ export default function SignUp() {
 
     const SignUpSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you for reaching for signing up");
+    alert("Thank you for signing up!");
     setPW("");
     setEmail("");
     setUsername("");

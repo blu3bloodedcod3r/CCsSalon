@@ -16,7 +16,7 @@ import Admin from './pages/admin';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Book from './pages/book';
-// import modifyServices from './pages/modifyServices'
+import Services from './pages/modifyServices';
 import Nav from './components/Nav/index';
 // import { StoreProvider } from './utils/GlobalState';
 
@@ -64,21 +64,13 @@ function App() {
                   path="/appointment" 
                   element={<Book />} 
                 />
-                {/* <Route 
+                <Route 
                   path="/services" 
                   element={<Services />} 
-                /> */}
+                />
                 <Route
                   path="/user" 
                   element={<User />} 
-                />
-                {/* <Route 
-                  path="/modifyServices" 
-                  element={<modifyServices />} 
-                /> */}
-                <Route 
-                  path="/home" 
-                  element={<Home />} 
                 />
                 <Route 
                   path="/admin" 

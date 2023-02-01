@@ -1,16 +1,9 @@
 import React from 'react';
 import {apptPicker} from '../components/Appointment-picker/appointment-picker'
-import User from './User'
+import User from './user'
 
 export default function Admin() {
     return (
-        <div className="modifyServices">
-                <a href="/admin/services">
-                <button className="btn btn-primary mod-btn" id="modify" >Add / Modify 
-                Services</button>
-                </a>
-        </div>,
-
         <div className="col-md-12 appt-list mt-5">
             <h3>Current Appointments</h3>
             <table className="table table-bordered">
@@ -23,7 +16,7 @@ export default function Admin() {
                     <th scope="col" >Message</th>
                     </tr>
                 </thead>
-                {appts}
+                {/* {appts}
                 <tbody>
                     <tr>
                     <th scope="row">{date}</th>
@@ -32,7 +25,7 @@ export default function Admin() {
                     <td>{service_id}</td>
                     <td>{message}</td>
                     </tr>
-                </tbody>
+                </tbody> */}
             </table>
         </div>
     )

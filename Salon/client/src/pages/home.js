@@ -5,12 +5,13 @@ import './styles/style.css'
 
 export default function Service() {
 
-    const service = services[0]
+    
 
     return (
         <aside className="main-content">
             <div className="card-container">
-                <div className="card">
+            {services.map(service => 
+                (<div className="card" key={service.id}>
                     <img src={service.image} className="card-img-top" alt="Service Picture Placeholder"></img>
                         <div className="card-body">
                             <h5 className="card-title"><strong>{service.name}</strong></h5>
@@ -23,7 +24,8 @@ export default function Service() {
                             </p>
                         <a href="/book" className="btn btn-primary">Reserve an appointment now</a>
                     </div> 
-                </div>
+                </div>)
+                )}
             </div>
         </aside>
     )

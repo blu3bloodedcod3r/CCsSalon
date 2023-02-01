@@ -74,6 +74,8 @@ h1{
 .card-container{
     display: flex;
     justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 /* This code gets rid of "log out" button styling */

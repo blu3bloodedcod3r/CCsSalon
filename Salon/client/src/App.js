@@ -7,8 +7,8 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
-import AppointmentPicker from 'appointment-picker';
+import { AppointmentPicker } from 'react-appointment-picker';
+import { StoreProvider } from './utils/GlobalState';
 
 import Home from './pages/home';
 import User from './pages/user';
@@ -18,7 +18,7 @@ import Signup from './pages/signup';
 import Book from './pages/book';
 import modifyServices from './pages/modifyServices'
 import Nav from './components/Nav/index';
-import { StoreProvider } from './utils/GlobalState';
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -61,7 +61,9 @@ function App() {
               />
               <Route 
                 path="/appointment" 
-                element={<Book />} 
+                element={
+                  <Book />
+                } 
               />
               <Route 
                 path="/services" 
@@ -88,16 +90,9 @@ function App() {
                 element={<NoMatch />} 
               />
             </Routes>
-            <div>
-            {/* inserted appoinment-picker stuff 93-99 */}
-            <h1>{ title }</h1>
-            <h2>Embed into a React component</h2>
-            <div>
-                <label>Time</label>
-                <AppoPicker></AppoPicker>
-            </div>
-        </div>,
-          </StoreProvider>
+            {/* inserted appoinment-picker 94 */}
+            <AppointmentPicker/>
+            </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>
@@ -105,4 +100,3 @@ function App() {
 }
 
 export default App;
-

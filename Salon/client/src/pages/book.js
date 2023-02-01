@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { services } from './Services';
-import AppointmentPicker from 'appointment-picker';
+import { AppointmentPicker}  from 'react-appointment-picker';
 
 export default function Book() {
     
@@ -16,6 +16,10 @@ export default function Book() {
     }
 
     return (
+
+        <AppointmentPicker />,
+
+
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-6 offset-md-3 border p-4 shadow bg-light apt-box">

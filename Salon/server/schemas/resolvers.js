@@ -1,7 +1,7 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Appt, Services } = require("../models");
-const { signToken } = require("../utils/auth");
-const stripe = require("stripe")(""); // stripe key
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Appt, Services } = require('../models');
+const { signToken } = require('../utils/auth');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // stripe key
 
 const resolvers = {
   Query: {
@@ -95,35 +95,36 @@ const resolvers = {
     },
     makeAppt: async (parent, args, context) => {
       if (context.user) {
-        console.log("context", context.user);
+        console.log("context", context.user)
         const appt = await Appt.create(args);
-        console.log("appt", appt);
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { appts: appt },
-        });
+        console.log("appt", appt)
+        await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
 
-        return appt.populate("service");
+      return appt.populate('service')
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     deleteAppt: async (parent, { apptId }, context) => {
+      console.log('****apptId', apptId)
       if (context.user) {
+        console.log('context.user', context.user)
         const userInfo = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { appts: { _id: apptId } } },
-          { new: true }
-        );
-        console.log("userInfo", userInfo);
+          { $pull: { appts: { _id: apptId} }}, {new: true})
+        console.log('userInfo', userInfo)
+          // { $pull: { appts: { apptId: _id } } },
+          // { new: true }
+        
       }
-      throw new AuthenticationError("You need to be logged in!");
+      // throw new AuthenticationError("You need to be logged in!");
     },
-    addServices: async (parent, args, context) => {
+
+    addServices: async (parent, {name, description, price, duration, filename}, context) => {
       if (context.user) {
-        const service = await Services.create(args);
-        return { service };
+        return await Services.create({name, description, price, duration, filename});
       }
-      throw new AuthenticationError("You need to be logged in!");
     },
+  
     deleteServices: async (parent, { serviceId }, context) => {
       if (context.user) {
         return Services.findOneAndDelete(

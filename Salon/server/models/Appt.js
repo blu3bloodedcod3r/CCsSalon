@@ -4,12 +4,12 @@ const { Schema } = mongoose;
 
 const apptSchema = new Schema({
     date: {
-        type: Date,
-        default: Date.now,
+        type: String,
+        // default: Date.now,
     },
     time: {
-        type: Date,
-        default: Date.now,
+        type: String,
+        // default: Date.now,
     },
     message: {
         type: String,
@@ -20,8 +20,8 @@ const apptSchema = new Schema({
     //     required: true,
     // },
     service: { 
-        type: Schema.Types. ObjectId,
-        ref: 'Service',
+        type: Schema.Types.ObjectId,
+        ref: 'Services',
     },
 });
 

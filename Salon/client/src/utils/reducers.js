@@ -85,7 +85,7 @@ export const reducer = (state, action) => {
   }
 };
 
-/// useProductReducer takes an initialState and returns a call to the react useReducer hook which will return an array which 
+
 export function useProductReducer(initialState) {
   return useReducer(reducer, initialState)
 }

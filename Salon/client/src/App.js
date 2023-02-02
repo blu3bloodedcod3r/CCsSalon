@@ -7,6 +7,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { StoreProvider } from "./utils/GlobalContext"
 
 // import AppointmentPicker from 'appointment-picker';
 import Header from './components/header'
@@ -46,8 +47,9 @@ function App() {
       <Router>
         <Header />
           <div className="flex-container">
-            <Nav />
-            <Routes>
+            <StoreProvider>
+              <Nav />
+              <Routes>
                 <Route 
                   path="/" 
                   element={<Home />} 
@@ -81,6 +83,7 @@ function App() {
                   element={<NoMatch />} 
                 /> */}
               </Routes>
+            </StoreProvider>
           </div>
       </Router>
     </ApolloProvider>

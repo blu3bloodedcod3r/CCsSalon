@@ -107,9 +107,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     deleteAppt: async (parent, { apptId }, context) => {
-      console.log("****apptId", apptId);
       if (context.user) {
-        console.log("context.user", context.user);
         const userInfo = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { appts: { _id: apptId } } },

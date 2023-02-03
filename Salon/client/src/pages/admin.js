@@ -1,5 +1,5 @@
 import React from 'react';
-import {apptPicker} from '../components/Appointment-picker/appointment-picker'
+import {apptPicker} from '../datepicker'
 import User from './user'
 import './styles/style.css'
 

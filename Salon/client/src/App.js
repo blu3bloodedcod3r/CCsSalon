@@ -7,7 +7,8 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { AppointmentPicker } from 'react-appointment-picker';
+import { Datepicker, Eventcalendar } from "@mobiscroll/react";
+import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 
 import { StoreProvider } from "./utils/GlobalContext"
 
@@ -63,7 +64,7 @@ function App() {
                 />
                 <Route 
                   path="/appointment" 
-                  element={<Book />} 
+                  element={<Book /> } 
                 />
                 <Route 
                   path="/services" 

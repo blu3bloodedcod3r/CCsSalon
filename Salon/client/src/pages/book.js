@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { services } from './Services';
-import AppointmentPicker from 'appointment-picker';
+import { Datepicker, CalendarPrev, CalendarNav, CalendarNext, CalendarToday, SegmentedGroup, SegmentedItem, setOptions } from '@mobiscroll/react';
 import './styles/style.css'
 
 export default function Book() {
     
-    // const service = services[0]
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
@@ -16,9 +15,70 @@ export default function Book() {
     setMessage("");
     }
 
+    // appointmentPicker 20-43
+
+    const myLabels = React.useMemo(() => {
+        return [{
+            start: '2023-02-02',
+            textColor: '#e1528f',
+            title: '3 SPOTS'
+        }], 
+        invalid: [
+            {start: '2023-02-15T14:00',
+            end: '2023-02-15T16:30'}
+        ],
+    }); 
+    const myInvalid = React.useMemo(() => {
+        return [{
+            start: '2023-02-03T08:00',
+            end: '2023-02-03T13:00'
+        }, {
+            start: '2023-02-03T15:00',
+            end: '2023-02-03T17:00'
+        }, {
+            start: '2023-02-03T19:00',
+            end: '2023-02-03T20:00'
+        }];
+    }, []);
+
     return (
         <aside className="main-content">
             <div className="page">
+                {/* datepicker 47-80*/}
+            <Datepicker
+            inputComponent="input"
+            controls={['calendar', 'timegrid']}
+            min="2023-02-03T00:00"
+            max="2023-08-03T00:00"
+            minTime="08:00"
+            maxTime="19:59"
+            stepMinute={60}
+            labels={myLabels}
+            invalid={myInvalid}
+            inputProps={{
+                services:"services"
+            }}
+            display="anchored"
+            selectMultiple={false}
+            responsive={{
+                xsmall: {
+                    controls: ['calendar'],
+                    display: 'bottom',
+                    touchUi: true
+                },
+                small: {
+                    controls: ['calendar'],
+                    display: 'anchored',
+                    touchUi: true
+                },
+                custom: { // Custom breakpoint
+                    breakpoint: 800,
+                    controls: ['calendar'],
+                    display: 'anchored',
+                    touchUi: false
+                }
+            }}
+            />
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-md-6 offset-md-3 border p-4 shadow bg-light apt-box">
@@ -61,6 +121,3 @@ export default function Book() {
         </aside>
     );
 };
-
-// <script src="./components/Appointment-picker/appointment-picker.min.js"></script>
-// <script src="js/appointment.js"></script>

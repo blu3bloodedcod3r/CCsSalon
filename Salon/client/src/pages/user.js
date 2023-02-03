@@ -2,14 +2,14 @@ import {React, useState } from 'react';
 import AppointmentPicker from 'react-appointment-picker';
 import { User } from '../../../server/schemas/typeDefs'
 
-export default function User(){
+export default function Appt(){
     return (
                
         <div>
-            <AppointmentPicker data={userId [Appt]}/>
+            <AppointmentPicker data={user._Id [Appt]}/>
         </div>
     );
-}
+};
 // import React from 'react';
 // import { Navigate, useParams } from 'react-router-dom';
 // import { useQuery } from '@apollo/client';
@@ -67,5 +67,3 @@ export default function User(){
 // </aside>
 //   );
 // };
-
-export default User;

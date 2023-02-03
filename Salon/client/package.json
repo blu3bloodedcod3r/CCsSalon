@@ -18,10 +18,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^0.2.4",
-    "axios": "^1.2.2",
-    "dotenv": "^16.0.3",
-    "bootstrap": "^5.2.3"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "uglify": "uglifyjs ./js/appointment-picker.js -c -m -o ./js/appointment-picker.min.js",
@@ -50,4 +47,3 @@
     ]
   }
 }
-  

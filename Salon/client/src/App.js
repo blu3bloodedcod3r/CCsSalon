@@ -10,15 +10,17 @@ import { setContext } from '@apollo/client/link/context';
 import { StoreProvider } from "./utils/GlobalContext"
 
 // import AppointmentPicker from 'appointment-picker';
+import Home from './pages/home'
 import Header from './components/header'
-import Home from './pages/home';
+import Services from './pages/servicespage';
 import User from './pages/user';
 import Admin from './pages/admin';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Book from './pages/book';
-import Services from './pages/modifyServices';
+import Modservices from './pages/modifyServices';
 import Nav from './components/Nav/index';
+import Nomatch from './pages/nomatch'
 // import { StoreProvider } from './utils/GlobalState';
 
 
@@ -67,21 +69,25 @@ function App() {
                   element={<Book />} 
                 />
                 <Route 
-                  path="/services" 
-                  element={<Services />} 
+                  path="/modservices" 
+                  element={<Modservices />} 
                 />
                 <Route
                   path="/user" 
                   element={<User />} 
                 />
+                <Route
+                  path="/services" 
+                  element={<Services/>} 
+                />
                 <Route 
                   path="/admin" 
                   element={<Admin />} 
                 />
-                {/* <Route
+                <Route
                   path="*" 
-                  element={<NoMatch />} 
-                /> */}
+                  element={<Nomatch />} 
+                />
               </Routes>
             </StoreProvider>
           </div>

@@ -8,6 +8,13 @@ type User {
   status: String
   appts: [Appt]
 }
+type Appt {
+  _id: ID
+  date: String!
+  time: String!
+  message: String
+  service: Services
+}
 type Services {
   _id: ID
   name: String!
@@ -15,13 +22,13 @@ type Services {
   price: String
   duration: String
   filename: String
+  reviews: [Review]
 }
-type Appt {
+type Review {
   _id: ID
-  date: String!
-  time: String!
-  message: String
-  service: Services
+  reviewText: String
+  reviewAuthor: String
+  reviewImg: String
 }
 type Auth {
   token: ID
@@ -40,7 +47,8 @@ type Mutation {
   deleteAppt(apptId: ID!): User 
   addServices(name: String!, description: String, price: String!, duration: String!, filename: String): Services
   deleteServices(serviceId: ID!): Services
+  addReview(serviceId: ID!, reviewText: String!, reviewAuthor: String!, reviewImg: String): Services
 }
 `;
-// makeAppt do I need all the parameters or easier way to say it
+
 module.exports = typeDefs;

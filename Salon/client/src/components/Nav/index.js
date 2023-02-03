@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import '../../pages/styles/style.css'
 
 function Nav() {
-
+console.log('Auth', Auth.loggedIn())
   function showNavigation() {
+    
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">

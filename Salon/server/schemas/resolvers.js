@@ -104,6 +104,17 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    addReview: async (parent, args, context) => {
+      console.log('args', args)
+      if (context.user) {
+        return Services.findOneAndUpdate(
+          { _id: args.serviceId },
+          {
+            $addToSet: {reviews: {reviewText: args.reviewText, reviewauthor: args.reviewAuthor, reviewImg: args.reviewImg}}
+          },{new: true})
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
     deleteAppt: async (parent, { apptId }, context) => {
       console.log('****apptId', apptId)
       if (context.user) {
@@ -111,20 +122,15 @@ const resolvers = {
         const userInfo = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { appts: { _id: apptId} }}, {new: true})
-        console.log('userInfo', userInfo)
-          // { $pull: { appts: { apptId: _id } } },
-          // { new: true }
-        
+        console.log('userInfo', userInfo)        
       }
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
-
     addServices: async (parent, {name, description, price, duration, filename}, context) => {
       if (context.user) {
         return await Services.create({name, description, price, duration, filename});
       }
     },
-  
     deleteServices: async (parent, { serviceId }, context) => {
       if (context.user) {
         return Services.findOneAndDelete(
@@ -133,6 +139,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+   
   }    
 };
 

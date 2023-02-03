@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-// import { useHistory } from 'react-router-dom'
 
 
 const Login = (props) => {
 
-    // const history = useHistory();
 
     const [formState, setFormState] = useState({ email: '', password: '', name: '' });
     const [login] = useMutation(LOGIN_USER);

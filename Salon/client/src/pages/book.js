@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { services } from './Services';
-import AppointmentPicker from 'appointment-picker';
+// import { services } from './Services';
+// import AppointmentPicker from 'appointment-picker';
 import './styles/style.css'
 
 export default function Book() {
     
-    // const service = services[0]
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 

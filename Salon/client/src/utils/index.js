@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppoPicker from './react-component';
+// import AppoPicker from './react-component';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';

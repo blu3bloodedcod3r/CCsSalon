@@ -7,6 +7,8 @@ class AuthService {
 
   loggedIn() {
     const token = this.getToken();
+    console.log("token",token)
+    console.log('tokenexpire', this.isTokenExpired(token))
     return !!token && !this.isTokenExpired(token);
   }
 

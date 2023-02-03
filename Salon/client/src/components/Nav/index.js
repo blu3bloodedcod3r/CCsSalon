@@ -20,11 +20,6 @@ function Nav() {
               </Link>
             </li>
           <li className="mx-1">
-            <Link to="/book">
-              Book
-            </Link>
-          </li>
-          <li className="mx-1">
             <Link to="/appointments">
               Appointments
             </Link>

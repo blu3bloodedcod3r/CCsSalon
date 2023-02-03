@@ -1,18 +1,39 @@
-import {React, useState } from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
-export default function SignUp() {
-
-    const [PW, setPW] = useState("");
-    const [email, setEmail] = useState("");
-    const [Username, setUsername] = useState("");
-
-    const SignUpSubmit = (e) => {
-    e.preventDefault();
-    alert("Thank you for signing up!");
-    setPW("");
-    setEmail("");
-    setUsername("");
-    }
+const Signup = () => {
+    const [formState, setFormState] = useState({
+      name: '',
+      email: '',
+      password: '',
+    });
+    const [addUser] = useMutation(ADD_USER);
+  
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+  
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    };
+  
+    const SignUpSubmit = async (event) => {
+      event.preventDefault();
+      console.log(formState);
+  
+      try {
+        const { data } = await addUser({
+          variables: { ...formState },
+        });
+  
+        Auth.login(data.addUser.token);
+      } catch (e) {
+        console.error(e);
+      } window.location.href ='/';
+    };
 
 return (
     <aside className="main-content">
@@ -21,17 +42,17 @@ return (
             <div className="mb-3">
                     <h3>Sign Up</h3>
                     <label className="form-label">Provide Email</label>
-                    <input type="email" className="form-control" placeholder="name@example.com" id="signup-email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                    <input type="email" className="form-control" placeholder="name@example.com" id="signup-email" onChange={handleChange}></input>
                 </div>
 
                 <div className="mb-3">
-                    <label for="validationTooltipUsername" className="form-label">Username</label>
-                    <input type="text" className="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required value={Username} onChange={(e) => setUsername(e.target.value)}></input>
+                    <label for="validationTooltipname" className="form-label">name</label>
+                    <input type="text" className="form-control" id="validationTooltipname" placeholder="name" aria-describedby="validationTooltipnamePrepend" required  onChange={handleChange}></input>
                 </div>
 
                 <div className="mb-3">
                     <label for="signup-password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="signup-password" value={PW} onChange={(e) => setPW(e.target.value)}></input>
+                    <input type="password" className="form-control" id="signup-password"onChange={handleChange}></input>
                 </div>
                             
                 <div className="mb-3 form-check">
@@ -43,3 +64,5 @@ return (
     </aside>
     );
 };
+
+export default Signup;

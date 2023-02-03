@@ -7,9 +7,7 @@ return (
     <aside className="main-content">
         <div className="text-center">
 
-            <h5>Welcome to CC's Salon
-                Please feel free to check out the services we offer and sign up to get a haircut ASAP!
-            </h5>
+            <h5>You have come to this page by mistake, please use the navigation bar</h5>
 
         </div>
     </aside>

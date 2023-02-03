@@ -10,15 +10,6 @@ class AuthService {
     return !!token && !this.isTokenExpired(token);
   }
 
-  // Code to confirm Admin has logged in need to double check - https://www.youtube.com/watch?v=jI4K7L-LI58 (Delete once admin login confirmed to be working)
-
-  AdminloggedIn(){
-    return (req, res) => {
-      if (req.user.id !== 0);
-      return res.send('Invalid Login')
-    }
-  }
-
   isTokenExpired(token) {
     try {
       const decoded = decode(token);

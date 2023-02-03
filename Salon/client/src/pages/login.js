@@ -1,35 +1,56 @@
-import {React, useState } from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
+// import { useHistory } from 'react-router-dom'
 
-export default function Login() {
 
-    const [PW, setPW] = useState("");
-    const [email, setEmail] = useState("");
-    const [Username, setUsername] = useState("");
+const Login = (props) => {
 
-    const LoginSubmit = (e) => {
-    e.preventDefault();
-    alert("Login successful");
-    setPW("");
-    setEmail("");
-    setUsername("");
-    }
+    // const history = useHistory();
+
+    const [formState, setFormState] = useState({ email: '', password: '', name: '' });
+    const [login] = useMutation(LOGIN_USER);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+    
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+      };
+
+      const LoginSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
+        try {
+          const { data } = await login({
+            variables: { ...formState },
+          });
+    
+          Auth.login(data.login.token);
+        } catch (e) {
+          console.error(e);
+        } window.location.href ='/';
+      };
 
 return (
     <aside className="main-content">
         <div className="page">
             <form className="login-form" onSubmit={LoginSubmit}>            
             <div className="mb-3">
-                    <h3>Sign Up</h3>
+                    <h3>Login</h3>
                     <label className="form-label">Provide Email</label>
-                    <input type="email" className="form-control" placeholder="name@example.com" id="login-email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                    <input type="email" className="form-control" placeholder="name@example.com" id="login-email" onChange={handleChange}></input>
                 </div>
                 <div className="mb-3">
-                    <label for="validationTooltipUsername" className="form-label">Username</label>
-                    <input type="text" className="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required value={Username} onChange={(e) => setUsername(e.target.value)}></input>
+                    <label for="validationTooltipname" className="form-label">name</label>
+                    <input type="text" className="form-control" id="validationTooltipname" placeholder="name" aria-describedby="validationTooltipnamePrepend" required onChange={handleChange}></input>
                 </div>
                 <div className="mb-3">
                     <label for="signup-password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="login-password" value={PW} onChange={(e) => setPW(e.target.value)}></input>
+                    <input type="password" className="form-control" id="login-password" onChange={handleChange}></input>
                 </div>
                             
                 <div className="mb-3 form-check">
@@ -41,3 +62,5 @@ return (
     </aside>
     );
 };
+
+export default Login;

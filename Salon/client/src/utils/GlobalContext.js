@@ -1,5 +1,4 @@
 import React, { createContext, useContext } from "react";
-import { AppointmentPicker } from "react-appointment-picker";
 import { useProductReducer } from './reducers'
 
 const StoreContext = createContext();
@@ -8,7 +7,11 @@ const { Provider } = StoreContext;
 const StoreProvider = ({ value = [], ...props }) => {
 
   const [state, dispatch] = useProductReducer({
-    AppointmentPicker
+    products: [],
+    cart: [],
+    cartOpen: false,
+    categories: [],
+    currentCategory: '',
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

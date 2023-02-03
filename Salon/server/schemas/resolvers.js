@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Appt, Services } = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')(''); // stripe key
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // stripe key
 
 const resolvers = {
   Query: {
@@ -9,9 +9,9 @@ const resolvers = {
       return await Services.find();
     },
     users: async () => {
-      return await User.find();
+      return await User.find().populate('appts');
     },
-    user: async (parent, args, context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('appts').populate({
           path: 'appts',
@@ -21,7 +21,51 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     appts: async () => {
+
       return await (await Appt.find()).populate('service');
+    },
+    checkout: async (parent, args, context) => {  
+      console.log('***args', args)
+
+      const url = new URL(context.headers.referer).origin;
+      console.log('***url', url)
+
+      const order = new Order({ products: args.products });
+      console.log('***order', order)
+
+      const line_items = [];
+
+      const { products } = await order.populate('products');
+      console.log('***products', products)
+
+      for (let i = 0; i < products.length; i++) {
+        const product = await stripe.products.create({
+          name: products[i].name,
+          description: products[i].description,
+          images: [`${url}/images/${products[i].image}`]
+        });
+
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: products[i].price * 100,
+          currency: 'usd',
+        });
+
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
+
+      return { session: session.id };
     }
   },
 
@@ -49,41 +93,42 @@ const resolvers = {
 
       return { token, user };
     },
-    makeAppt: async (parent, { name, time, message, service }, context) => {
-      console.log(context);
+    makeAppt: async (parent, args, context) => {
       if (context.user) {
-        const appt = new Appt({ name, time, message, service });
-
+        console.log("context", context.user)
+        const appt = await Appt.create(args);
+        console.log("appt", appt)
         await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
 
-        return appt;
+      return appt.populate('service')
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    // deleteAppt: async (parent, args, context) => {
-    //   console.log(args)
-    //   if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { appts: { appt.id: appt.id } } },
-    //       { new: true }
-    //     );
-    //   }
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
-    addServices: async (parent, args, context) => {
+    deleteAppt: async (parent, { apptId }, context) => {
+      console.log('****apptId', apptId)
       if (context.user) {
-      const service = await Services.create(args);
-      return { service };
-    } 
-    throw new AuthenticationError("You need to be logged in!");
-  },
-    deleteServices: async (parent, { _id }, context) => {
-      if (context.user) {
-        return User.findOneAndUpdate(
+        console.log('context.user', context.user)
+        const userInfo = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { Services: { _id: _id } } },
-          { new: true }
+          { $pull: { appts: { _id: apptId} }}, {new: true})
+        console.log('userInfo', userInfo)
+          // { $pull: { appts: { apptId: _id } } },
+          // { new: true }
+        
+      }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
+    addServices: async (parent, {name, description, price, duration, filename}, context) => {
+      if (context.user) {
+        return await Services.create({name, description, price, duration, filename});
+      }
+    },
+  
+    deleteServices: async (parent, { serviceId }, context) => {
+      if (context.user) {
+        return Services.findOneAndDelete(
+        { $pull: { Services: { _id: serviceId } } },
         );
       }
       throw new AuthenticationError("You need to be logged in!");

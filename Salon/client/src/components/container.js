@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import '../pages/styles/style.css'
 import Header from './header';
 import Admin from '../pages/admin';
 import Book from '../pages/book';
@@ -6,10 +9,11 @@ import Login from '../pages/login';
 import ModifyServices from '../pages/modifyServices';
 import SignUp from '../pages/signup';
 import User from '../pages/user';
+import Nav from './Nav/index'
 
 
 export default function Container() {
-    const [currentPage, setCurrentPage] = useState('About');
+    const [currentPage, setCurrentPage] = useState('Home');
   
     const renderPage = () => {
       if (currentPage === 'Home') {
@@ -37,13 +41,13 @@ export default function Container() {
   
     return (
       <div>
-       
-        <Header />
         
+        <Header />
+          <main className="flex-container">
         <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
        
         {renderPage()}
-       
+          </main>
       </div>
     );
   }

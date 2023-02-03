@@ -18,8 +18,8 @@ type Services {
 }
 type Appt {
   _id: ID
-  date: String
-  time: String
+  date: String!
+  time: String!
   message: String
   service: Services
 }
@@ -30,7 +30,7 @@ type Auth {
 
 type Query {
   services: [Services]
-  user: User
+  me: User
   users: [User]
   appts: [Appt]
 }
@@ -39,15 +39,14 @@ type Mutation {
 
   addUser(name: String!, email: String!, password: String!): Auth
 
-  makeAppt(date: String, time: String, message: String, service: ID!): Appt
+  makeAppt(date: String!, time: String!, message: String, service: ID!): Appt
 
-  deleteAppt(_id: ID!): User 
+  deleteAppt(apptId: ID!): User 
 
-  addServices(name: String!, description: String, price: String, duration: String, filename: String): Services
+  addServices(name: String!, description: String, price: String!, duration: String!, filename: String): Services
 
-  deleteServices(_id: ID!): Services
+  deleteServices(serviceId: ID!): Services
 }
 `;
 // makeAppt do I need all the parameters or easier way to say it
-// deleteAppt is appts.id correct way of referencing the id of the appointment that needs to be deleted!
 module.exports = typeDefs;

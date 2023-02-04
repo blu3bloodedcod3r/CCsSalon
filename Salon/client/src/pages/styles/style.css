@@ -158,7 +158,7 @@ a {
   }
 
   @media screen and (max-width: 1440px) {
-    header {
+    .header {
         width: 101vw;
     }
   }
@@ -167,7 +167,8 @@ a {
     h1 {
         font-size: 3rem;
     }
-    header {
+    
+    .header {
         font-size: 1.5rem;
         width: 112vw;
     }
@@ -194,23 +195,24 @@ a {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 770px) {
     h1 {
         font-size: 2.7rem;
     }
-    header {
+    
+    .header {
         font-size: 1.5rem;
         width: 105vw;
     }
 
+    li {
+        font-size: .7rem;
+    }
+
     .navcontainer {
-        width: 15vw;
+        min-width: 20vw;
         height: 250vh;
     }
-    
-    .content {
-        margin-left: 150px;
-      }
 
     .card {
         width: 11rem;
@@ -225,7 +227,7 @@ a {
     }
 
     .mod-btn {
-        font-size: 24px;
+        font-size: 15px;
     }
 
     .custom-btn {
@@ -235,6 +237,13 @@ a {
     body {
         font-size: .7rem;
     }
+
+    .card-container{
+        display: flex;
+        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media screen and (max-width: 430px) {
@@ -243,14 +252,18 @@ a {
         font-size: 1.8rem;
     }
 
-    header {
-        font-size: .8rem;
-        height: 10vh;
+    li {
+        font-size: .5rem;
+    }
+
+    .header {
+        font-size: 6rem;
+        height: 8vh;
         width: 130vw;
     }
 
     .navcontainer {
-        width: 23vw;
+        width: 25vw;
     }
 
     a {
@@ -270,11 +283,11 @@ a {
     }
 
     .mod-btn {
-        font-size: 20px;
+        font-size: 10px;
     }
 
     .custom-btn {
-        font-size: 20px;
+        font-size: 10px;
     }
 
     body {
@@ -288,7 +301,29 @@ a {
     .card {
         width: 12rem;
       }
+
+      .card-container{
+        display: flex;
+        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        flex: 1 1 85%;
+        padding: 15px;
+        min-height: max-content;
+        margin-left: 120px;
+      }  
       
+      .slogan {
+        font-size: 1rem;
+        margin-left: 50px;
+    }
+
+    .card-img-top {
+        max-height: 10rem;
+    }
 }
 
 @media screen and (max-width: 380px) {
@@ -303,9 +338,18 @@ a {
     .navcontainer{
         height: 380vh;
     }
+
+    .mx-1 {
+        margin-left: -0.75rem!important;
+    }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 322px) {
+
+    .mx-1 {
+        margin-left: -1.75rem!important;
+    }
+
     h1 {
         font-size: 1.3rem;
     }

@@ -72,19 +72,14 @@ const resolvers = {
   Mutation: {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-
       return { token, user };
     },
     addUser: async (parent, args) => {
@@ -126,20 +121,21 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    addServices: async (parent, {name, description, price, duration, filename}, context) => {
-      if (context.user) {
-        return await Services.create({name, description, price, duration, filename});
-      }
+    addService: async (parent, args) => {     
+        const newService = await Services.create(args);
+        console.log('newService', newService)
+        // await Services ({ $addToSet: { services: }})
+        return newService           
     },
-    deleteServices: async (parent, { serviceId }, context) => {
-      if (context.user) {
-        return Services.findOneAndDelete(
-        { $pull: { Services: { _id: serviceId } } },
-        );
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-   
+    deleteService: async (parent, { serviceId }) => {
+      return Services.findOneAndDelete({ _id:serviceId});
+    }
+    // {
+    //     return Services.findOneAndUpdate(
+    //     { $pull: { Services: { _id: serviceId } } },
+    //      { new: true }
+    //     );
+    //   }
   }    
 };
 

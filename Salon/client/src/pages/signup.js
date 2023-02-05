@@ -15,7 +15,7 @@ const Signup = () => {
   
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log('namevalue', name, value)
+    console.log('name value', name, value)
       setFormState({
         ...formState,
         [name]: value,
@@ -44,8 +44,8 @@ return (
         <div className="mb-3">
           <h3>Sign Up</h3>
 
-          <label for="validationTooltipname" className="form-label">name</label>
-          <input type="text" className="form-control" id="validationTooltipname" name="name" placeholder="name" aria-describedby="validationTooltipnamePrepend" required  onChange={handleChange}/>          
+          <label htmlFor="validationTooltipname" className="form-label">name</label>
+          <input type="text" className="form-control" id="validationTooltipname" name="name" placeholder="name" aria-describedby="validationTooltipnamePrepend" required onChange={handleChange}/>          
         </div>
 
         <div className="mb-3">

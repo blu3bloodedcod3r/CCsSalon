@@ -83,17 +83,42 @@ mutation makeAppt($date: String, $time: String, $message: String, $service: ID!)
 }
 `;
 
-export const ADD_SERVICES = gql`
-mutation addServices($name: String!, $description: String, $price: String, $duration: String, $image: String) {
-    addServices(name: $name, description: $description, price: $price, duration: $duration, image: $image) {
-        _id
-        name
-        description
-        price
-        duration
-        image
+export const ADD_SERVICE = gql`
+mutation addService($name: String!, $description: String, $price: String!, $duration: String!, $image: String) {
+  addService(name: $name, description: $description, price: $price, duration: $duration, image: $image) {
+    _id
+    name
+    description
+    price
+    duration
+    image
+    reviews {
+      _id
+      reviewText
+      reviewAuthor
+      reviewImg
     }
   }
+}
+`;
+
+export const DELETE_SERVICE = gql`
+mutation deleteService($serviceId: ID!) {
+  deleteService(serviceId: $serviceId) {
+    _id
+    name
+    description
+    price
+    duration
+    image
+    reviews {
+      _id
+      reviewText
+      reviewAuthor
+      reviewImg
+    }
+  }
+}
 `;
 
 export const ADD_ORDER = gql`

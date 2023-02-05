@@ -18,7 +18,7 @@ import Admin from './pages/admin';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Book from './pages/book';
-import Modservices from './pages/modifyServices';
+import ModServices from './components/Services/ModServices';
 import Nav from './components/Nav/index';
 import Nomatch from './pages/nomatch'
 
@@ -72,7 +72,7 @@ function App() {
                 />
                 <Route 
                   path="/modservices" 
-                  element={<Modservices />} 
+                  element={<ModServices />} 
                 />
                 <Route
                   path="/user" 

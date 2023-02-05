@@ -20,7 +20,7 @@ mutation login($email: String!, $password: String!) {
           description
           price
           duration
-          filename
+          image
           reviews {
             _id
             reviewText
@@ -54,7 +54,7 @@ mutation addUser($name: String!, $email: String!, $password: String!) {
           description
           price
           duration
-          filename
+          image
           reviews {
             _id
             reviewText
@@ -84,14 +84,14 @@ mutation makeAppt($date: String, $time: String, $message: String, $service: ID!)
 `;
 
 export const ADD_SERVICES = gql`
-mutation addServices($name: String!, $description: String, $price: String, $duration: String, $filename: String) {
-    addServices(name: $name, description: $description, price: $price, duration: $duration, filename: $filename) {
+mutation addServices($name: String!, $description: String, $price: String, $duration: String, $image: String) {
+    addServices(name: $name, description: $description, price: $price, duration: $duration, image: $image) {
         _id
         name
         description
         price
         duration
-        filename
+        image
     }
   }
 `;

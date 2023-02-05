@@ -17,15 +17,23 @@ export const QUERY_USER = gql`
     }
 `;
 
-export const QUERY_SERVICES = gql`
-    query services {
+export const QUERY_ALL_SERVICES = gql`
+  {
+    services {
+      _id
+      name
+      description
+      price
+      duration
+      image
+      reviews {
         _id
-        name
-        description
-        price
-        duration
-        filename
+        reviewText
+        reviewAuthor
+        reviewImg
+      }
     }
+   }
 `;
 
 export const QUERY_APPT = gql`

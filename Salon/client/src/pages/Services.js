@@ -1,3 +1,7 @@
+// original Seed file used to created the array of services
+// new seeders folder created in the server
+// keep as backup just in case it is needed **Images folder also kept for now**
+
 import WS from "./images/WS.png";
 import BS from "./images/BS.png";
 import HT from "./images/HT.jpg";

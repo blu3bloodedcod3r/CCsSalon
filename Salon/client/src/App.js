@@ -67,7 +67,7 @@ function App() {
                   element={<Signup />} 
                 />
                 <Route 
-                  path="/appointment" 
+                  path="/appointment/:serviceId" 
                   element={<Book />} 
                 />
                 <Route 

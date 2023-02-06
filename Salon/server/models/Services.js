@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+/// Does the price for the services get added here? 
 const servicesSchema = new Schema({
   name: {
     type: String,

@@ -37,10 +37,10 @@ app.post("/api/sendmail", async (req, res) => {
     const send_to = email;
     const sent_from = process.env.EMAIL_USER;
     const reply_to = email;
-    const subject = "Thank you message"
+    const subject = "Appointment Confirmation"
     const message = `
-    <h3>Appointment Confirmation</h3>
-    <p>Hi, [First Name]. This is a reminder that you have an appointment scheduled with [Company] on [Date] at [Time] for [Service]. Please reply YES to confirm, or call/text us to reschedule.</p>
+    <h3>Salon Reminder</h3>
+    <p>Hi, ${req.body.name}. This is a reminder that you have an appointment scheduled with on ${req.body.date} at ${req.body.time} for ${req.body.service}. Please reply YES to confirm, or to reschedule.</p>
     `
     await sendEmail(subject, message, send_to, sent_from, reply_to)
     res.status(200).json({success: true, message: "Email Sent!"})

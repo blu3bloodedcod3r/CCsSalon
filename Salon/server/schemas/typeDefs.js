@@ -36,6 +36,7 @@ type Auth {
 }
 type Query {
   services: [Services]
+  service(serviceId: ID!): Services
   me: User
   users: [User]
   appts: [Appt]

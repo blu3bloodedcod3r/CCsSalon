@@ -21,8 +21,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     appts: async () => {
-
-      return await (await Appt.find()).populate('service');
+      return await (await Appt.find()).populate('service').populate('user');
+    },
+    service: async (parent, {serviceId}) => {
+      return Services.findOne({ _id: serviceId });
     },
     // checkout: async (parent, args, context) => {  
     //   console.log('***args', args)

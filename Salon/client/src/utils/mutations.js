@@ -69,17 +69,27 @@ mutation addUser($name: String!, $email: String!, $password: String!) {
 `;
 
 export const MAKE_APPT = gql`
-mutation makeAppt($date: String, $time: String, $message: String, $service: ID!) {
-    makeAppt(date: $date, time: $time, message: $message, service: $service) {
+mutation makeAppt($date: String!, $time: String!, $service: ID!) {
+  makeAppt(date: $date, time: $time, service: $service) {
+    _id
+    date
+    time
+    message
+    service {
+      _id
+      name
+      description
+      price
+      duration
+      image
+      reviews {
         _id
-        date
-        time
-        message
-        service {
-            _id
-            name
-        }
+        reviewText
+        reviewAuthor
+        reviewImg
+      }
     }
+  }
 }
 `;
 

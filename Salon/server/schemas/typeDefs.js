@@ -21,7 +21,7 @@ type Services {
   description: String
   price: String
   duration: String
-  filename: String
+  image: String
   reviews: [Review]
 }
 type Review {
@@ -45,8 +45,8 @@ type Mutation {
   addUser(name: String!, email: String!, password: String!): Auth
   makeAppt(date: String!, time: String!, message: String, service: ID!): Appt
   deleteAppt(apptId: ID!): User 
-  addServices(name: String!, description: String, price: String!, duration: String!, filename: String): Services
-  deleteServices(serviceId: ID!): Services
+  addService(name: String!, description: String, price: String!, duration: String!, image: String): Services
+  deleteService(serviceId: ID!): Services
   addReview(serviceId: ID!, reviewText: String!, reviewAuthor: String!, reviewImg: String): Services
 }
 `;

@@ -17,7 +17,7 @@ const servicesSchema = new Schema({
   duration: {
     type: String,
   },
-  filename: {
+  image: {
     type: String,
   },
   reviews: [

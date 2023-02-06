@@ -11,7 +11,7 @@ import WH from "./images/WH.png";
 
 export const services = [
 
-        {
+    {
         id: 0,
         name: "Women's Styling",
         image: WS,
@@ -59,6 +59,19 @@ export const services = [
         duration: "2 - 3 hrs depedning on hair length",
         price: "$75 - $200",
     }
-    ];
+];
 
-    export default { services }
+function getServiceData(id) {
+    let serviceData = services.find(service => service.id === id)
+
+    if (serviceData === undefined) {
+        console.log("Product data does not exist for ID: " + id)
+        return undefined
+    }
+
+    return serviceData;
+}
+
+export { getServiceData }
+// Used in cartContext.js file
+// When export default was used, it didn't work

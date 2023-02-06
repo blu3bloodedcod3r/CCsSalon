@@ -132,18 +132,15 @@ mutation deleteService($serviceId: ID!) {
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
+  mutation addOrder($services: [ID]!) {
+    addOrder(services: $services) {
       purchaseDate
-      products {
+      services {
         _id
         name
         description
         price
         quantity
-        category {
-          name
-        }
       }
     }
   }

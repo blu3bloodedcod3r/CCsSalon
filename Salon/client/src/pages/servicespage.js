@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_SERVICES } from "../utils/queries";
+import { QUERY_ALL_SERVICES, QUERY_ME } from "../utils/queries";
 
 import "./styles/style.css";
 
@@ -36,9 +37,11 @@ const Service = () => {
                   <li key={service.price}>Price: {service.price}</li>
                 </ul>
               </div>
-              <a href="/appointment" className="btn btn-primary">
-                Reserve an appointment now
-              </a>
+              <Link to={`/appointment/${service._id}`}>
+                <button className="btn btn-primary mod-btn" id="modify">
+                  Reserve an appointment now
+                </button>
+              </Link>
             </div>
           </div>
         ))}

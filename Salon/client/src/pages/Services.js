@@ -17,7 +17,7 @@ export const services = [
         image: WS,
         description: "Includes: wash and style",
         duration: "45 min",
-        price: "$50 - $100 (depending on hair length)",
+        price: "$70",
     },
     {
         id: 1,
@@ -25,7 +25,7 @@ export const services = [
         image: MS,
         description: "Includes: wash and style",
         duration: "45 min",
-        price: "$20-$50",
+        price: "$40",
     },
     {
         id: 2,
@@ -49,7 +49,7 @@ export const services = [
         image: BS,
         description: "Includes: razor shave and warm towel after trim/cut",
         duration: "45 min",
-        price: "$25 - $45",
+        price: "$35",
     },
     {
         id: 5,
@@ -57,7 +57,7 @@ export const services = [
         image: HT,
         description: "Includes: wash and style",
         duration: "2 - 3 hrs depedning on hair length",
-        price: "$75 - $200",
+        price: "$200",
     }
 ];
 

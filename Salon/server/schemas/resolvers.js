@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Appt, Services } = require('../models');
+const { User, Appt, Services, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // stripe key
 
@@ -21,8 +21,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     appts: async () => {
-
-      return await (await Appt.find()).populate('service');
+      return await (await Appt.find()).populate('service').populate('user');
+    },
+    service: async (parent, {serviceId}) => {
+      return Services.findOne({ _id: serviceId });
     },
     // checkout: async (parent, args, context) => {  
     //   console.log('***args', args)
@@ -126,19 +128,15 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    addServices: async (parent, {name, description, price, duration, filename}, context) => {
-      if (context.user) {
-        return await Services.create({name, description, price, duration, filename});
-      }
+     addService: async (parent, args) => {     
+        const newService = await Services.create(args);
+        console.log('newService', newService)
+        // await Services ({ $addToSet: { services: }})
+        return newService           
     },
-    deleteServices: async (parent, { serviceId }, context) => {
-      if (context.user) {
-        return Services.findOneAndDelete(
-        { $pull: { Services: { _id: serviceId } } },
-        );
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
+    deleteService: async (parent, { serviceId }) => {
+      return Services.findOneAndDelete({ _id:serviceId});
+    }
    
   }    
 };

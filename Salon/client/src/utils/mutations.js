@@ -20,7 +20,7 @@ mutation login($email: String!, $password: String!) {
           description
           price
           duration
-          filename
+          image
           reviews {
             _id
             reviewText
@@ -54,7 +54,7 @@ mutation addUser($name: String!, $email: String!, $password: String!) {
           description
           price
           duration
-          filename
+          image
           reviews {
             _id
             reviewText
@@ -69,46 +69,78 @@ mutation addUser($name: String!, $email: String!, $password: String!) {
 `;
 
 export const MAKE_APPT = gql`
-mutation makeAppt($date: String, $time: String, $message: String, $service: ID!) {
-    makeAppt(date: $date, time: $time, message: $message, service: $service) {
+mutation makeAppt($date: String!, $time: String!, $service: ID!) {
+  makeAppt(date: $date, time: $time, service: $service) {
+    _id
+    date
+    time
+    message
+    service {
+      _id
+      name
+      description
+      price
+      duration
+      image
+      reviews {
         _id
-        date
-        time
-        message
-        service {
-            _id
-            name
-        }
+        reviewText
+        reviewAuthor
+        reviewImg
+      }
     }
+  }
 }
 `;
 
-export const ADD_SERVICES = gql`
-mutation addServices($name: String!, $description: String, $price: String, $duration: String, $filename: String) {
-    addServices(name: $name, description: $description, price: $price, duration: $duration, filename: $filename) {
-        _id
-        name
-        description
-        price
-        duration
-        filename
+export const ADD_SERVICE = gql`
+mutation addService($name: String!, $description: String, $price: String!, $duration: String!, $image: String) {
+  addService(name: $name, description: $description, price: $price, duration: $duration, image: $image) {
+    _id
+    name
+    description
+    price
+    duration
+    image
+    reviews {
+      _id
+      reviewText
+      reviewAuthor
+      reviewImg
     }
   }
+}
+`;
+
+export const DELETE_SERVICE = gql`
+mutation deleteService($serviceId: ID!) {
+  deleteService(serviceId: $serviceId) {
+    _id
+    name
+    description
+    price
+    duration
+    image
+    reviews {
+      _id
+      reviewText
+      reviewAuthor
+      reviewImg
+    }
+  }
+}
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
+  mutation addOrder($services: [ID]!) {
+    addOrder(services: $services) {
       purchaseDate
-      products {
+      services {
         _id
         name
         description
         price
         quantity
-        category {
-          name
-        }
       }
     }
   }

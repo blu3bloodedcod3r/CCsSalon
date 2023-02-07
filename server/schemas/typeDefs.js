@@ -36,12 +36,8 @@ type Auth {
   user: User
 }
 type Query {
-<<<<<<< Updated upstream
   services: [Services]
   service(serviceId: ID!): Services
-=======
-  services: [Services] 
->>>>>>> Stashed changes
   me: User
   users: [User]
   appts: [Appt]

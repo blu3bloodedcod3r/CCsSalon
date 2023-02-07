@@ -30,7 +30,7 @@ const ServiceList = ({services}) => {
     <div className="card-container">
       {services.map((service) =>
       (<div className="card" key={service._id}>
-        <img src={service.image} className="card-img-top" alt="Service Placeholder"></img>
+        <img src={require(`../../pages/images/${service.image}`)} className="card-img-top" alt="Service Placeholder"></img>
           <div className="card-body">
             <h5 className="card-title"><strong>{service.name}</strong></h5>
             <div className="card-text">

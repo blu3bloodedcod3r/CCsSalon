@@ -21,7 +21,7 @@ const Service = () => {
         {services.map((service) => (
           <div className="card" key={service.id}>
             <img
-              src={service.image}
+              src={require(`../pages/images/${service.image}`)}
               className="card-img-top"
               alt="Service Placeholder"
             ></img>

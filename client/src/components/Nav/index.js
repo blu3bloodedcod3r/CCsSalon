@@ -19,11 +19,6 @@ console.log('Auth', Auth.loggedIn())
             </Link>
           </li>
           <li className="mx-1">
-            <Link to="/appointment">
-              Book
-            </Link>
-          </li>
-          <li className="mx-1">
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>

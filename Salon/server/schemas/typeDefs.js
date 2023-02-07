@@ -13,6 +13,7 @@ type Appt {
   date: String!
   time: String!
   message: String
+  user: User
   service: Services
 }
 type Services {

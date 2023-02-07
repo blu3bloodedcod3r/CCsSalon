@@ -92,14 +92,15 @@ const BookingForm = ({ serviceId }) => {
                 />
               </div>
               <div className="col-12">
-                <textarea
+                <input
                   value={apptState.message}
+                  type="text"
                   className="form-control"
                   id="message"
                   placeholder="Message"
                   name="message"
                   onChange={handleChange}
-                ></textarea>
+                />
               </div>
               <div className="col-12 mt-3">
                 <button type="submit" className="btn btn-primary float-end">

@@ -20,9 +20,11 @@ console.log('Auth', Auth.loggedIn())
                 Services
               </Link>
             </li>
+            <br></br>
+            <br></br>
           <li className="mx-1">
-            <Link to="/appointments">
-              Appointments
+            <Link to="/user">
+              Your Appointments
             </Link>
           </li>
           <li className="mx-1">

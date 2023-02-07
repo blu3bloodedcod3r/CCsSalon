@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_SERVICES, QUERY_ME } from "../utils/queries";
+import { QUERY_ALL_SERVICES } from "../utils/queries";
 
 import "./styles/style.css";
 
 const Service = () => {
   const { loading, data } = useQuery(QUERY_ALL_SERVICES);
+  console.log(data)
   const services = data?.services || [];
 
   // if data isn't here yet, say so

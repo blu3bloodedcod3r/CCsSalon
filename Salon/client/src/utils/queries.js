@@ -79,18 +79,25 @@ export const QUERY_SINGLE_SERVICE = gql`
   }
 `;
 
-export const QUERY_APPT = gql`
-  query appt {
-    _id
-    date
-    time
-    message
-    service {
+export const QUERY_ALL_APPTS = gql`
+  {
+    appts {
       _id
-      name
-      description
-      price
-      duration
+      date
+      time
+      message
+      user {
+        _id
+        name
+        email
+      }
+      service {
+        _id
+        name
+        description
+        price
+        duration
+      }
     }
   }
 `;

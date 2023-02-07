@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_SERVICES } from "../utils/queries";
 
@@ -7,7 +6,6 @@ import "./styles/style.css";
 
 const Service = () => {
   const { loading, data } = useQuery(QUERY_ALL_SERVICES);
-  console.log(data)
   const services = data?.services || [];
 
   // if data isn't here yet, say so
@@ -21,7 +19,7 @@ const Service = () => {
         {services.map((service) => (
           <div className="card" key={service.id}>
             <img
-              src={require(`./images/${service.image}`) }
+              src={service.image}
               className="card-img-top"
               alt="Service Placeholder"
             ></img>
@@ -38,11 +36,9 @@ const Service = () => {
                   <li key={service.price}>Price: {service.price}</li>
                 </ul>
               </div>
-              <Link to={`/appointment/${service._id}`}>
-                <button className="btn btn-primary mod-btn" id="modify">
-                  Reserve an appointment now
-                </button>
-              </Link>
+              <a href="/appointment" className="btn btn-primary">
+                Reserve an appointment now
+              </a>
             </div>
           </div>
         ))}

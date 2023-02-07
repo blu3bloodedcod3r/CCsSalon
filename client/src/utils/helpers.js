@@ -11,8 +11,7 @@ export function pluralize(name, count) {
       let db, tx, store;
       request.onupgradeneeded = function(e) {
         const db = request.result;
-        db.createObjectStore('products', { keyPath: '_id' });
-        db.createObjectStore('categories', { keyPath: '_id' });
+        db.createObjectStore('services', { keyPath: '_id' }); // Changed from products to services
         db.createObjectStore('cart', { keyPath: '_id' });
       };
   

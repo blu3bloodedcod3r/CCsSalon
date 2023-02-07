@@ -36,8 +36,12 @@ type Auth {
   user: User
 }
 type Query {
+<<<<<<< Updated upstream
   services: [Services]
   service(serviceId: ID!): Services
+=======
+  services: [Services] 
+>>>>>>> Stashed changes
   me: User
   users: [User]
   appts: [Appt]
@@ -50,6 +54,7 @@ type Mutation {
   addService(name: String!, description: String, price: String!, duration: String!, image: String): Services
   deleteService(serviceId: ID!): Services
   addReview(serviceId: ID!, reviewText: String!, reviewAuthor: String!, reviewImg: String): Services
+  addOrder(serviceId: [ID!]): Order
 }
 `;
 

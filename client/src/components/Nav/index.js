@@ -3,8 +3,11 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import '../../pages/styles/style.css'
 
+
+
 function Nav() {
 console.log('Auth', Auth.loggedIn())
+
   function showNavigation() {
     
     if (Auth.loggedIn()) {
@@ -16,8 +19,8 @@ console.log('Auth', Auth.loggedIn())
             </Link>
           </li>
           <li className="mx-1">
-            <Link to="/user">
-              User
+            <Link to="/appointment">
+              Book
             </Link>
           </li>
           <li className="mx-1">
@@ -39,6 +42,11 @@ console.log('Auth', Auth.loggedIn())
             <li className="mx-1">
               <Link to="/login">
                 Login
+              </Link>
+            </li>
+            < li className="mx-1">
+              <Link to="/cart">
+                Cart
               </Link>
             </li>
           </ul>

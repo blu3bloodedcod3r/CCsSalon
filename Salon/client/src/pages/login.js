@@ -44,7 +44,7 @@ return (
         <div className="mb-3">
           <h3>Login</h3>
 
-          <label for="validationTooltipname" className="form-label">name</label>
+          <label htmlFor="validationTooltipname" className="form-label">name</label>
           <input type="text" className="form-control" id="validationTooltipname" name="name" placeholder="name" aria-describedby="validationTooltipnamePrepend" required onChange={handleChange}/>    
         </div>
 
@@ -54,7 +54,7 @@ return (
         </div>
 
         <div className="mb-3">
-          <label for="signup-password" className="form-label">Password</label>
+          <label htmlFor="signup-password" className="form-label">Password</label>
           <input 
           type="password" name="password"
           className="form-control" id="signup-password"onChange={handleChange}/>

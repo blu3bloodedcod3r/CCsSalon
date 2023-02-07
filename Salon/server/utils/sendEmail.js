@@ -10,9 +10,12 @@ const sendEmail = async (subject, message, send_to, sent_from, reply_to) => {
             user: process.env.EMAIL_USER, // generated ethereal user
             pass: process.env.EMAIL_PASS, // generated ethereal password
         },
+          tls: {
+  rejectUnauthorized:false 
+  }
       });
 
-    const options = {
+    const mailOptions = {
         from: sent_from,
         to: send_to,
         replyTo: reply_to,
@@ -21,7 +24,7 @@ const sendEmail = async (subject, message, send_to, sent_from, reply_to) => {
     }
 
     // Send Email
-    transporter.sendMail(options, (err, info) => {
+    transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
             console.log(err)
         } else {

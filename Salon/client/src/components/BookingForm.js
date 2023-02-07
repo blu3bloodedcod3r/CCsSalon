@@ -52,10 +52,10 @@ const BookingForm = ({ serviceId }) => {
   };
 
   return (
-    <div>
+    <div className="bookingForm">
       {Auth.loggedIn() ? (
         <>
-          <form id="apptForm" onSubmit={BookSubmit}>
+         <form id="apptForm" method="POST" action="send" onSubmit={BookSubmit}>
             <div className="row g-3">
               <div className="col-md-12">
                 <input

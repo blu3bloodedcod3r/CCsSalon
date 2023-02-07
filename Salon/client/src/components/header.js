@@ -13,6 +13,7 @@ return (
                 <br></br>
             <p className="slogan">Your Hair Beauty, Our Duty</p>
         <Link className="shop" to="/">
+            <br></br>
           <span role="img" aria-label="shopping bag">🛍️</span>
           -Shop-Shop
         </Link>

@@ -12,7 +12,6 @@ import { StoreProvider } from "./utils/GlobalContext"
 // import AppointmentPicker from 'appointment-picker';
 import Home from './pages/home'
 import Header from './components/header'
-import Services from './pages/servicespage';
 import User from './pages/user';
 import Admin from './pages/admin';
 import Login from './pages/login';
@@ -77,10 +76,6 @@ function App() {
                 <Route
                   path="/user" 
                   element={<User />} 
-                />
-                <Route
-                  path="/services" 
-                  element={<Services/>} 
                 />
                 <Route 
                   path="/admin" 

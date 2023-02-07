@@ -19,13 +19,8 @@ console.log('Auth', Auth.loggedIn())
             </Link>
           </li>
           <li className="mx-1">
-<<<<<<< HEAD
-            <Link to="/user">
-              User
-=======
             <Link to="/appointment">
               Book
->>>>>>> main
             </Link>
           </li>
           <li className="mx-1">

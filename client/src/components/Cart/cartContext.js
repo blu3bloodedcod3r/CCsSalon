@@ -2,7 +2,7 @@
 /// Is this going to be the same or similar to the Global context file? 
 
 import { createContext, useState } from 'react'
-import { services, getServiceData } from '../../pages/Services' // If I move this file this will have to be updated. And do I use services or the servicespages?
+//import { services, getServiceData } from '../../pages/Services' // If I move this file this will have to be updated. And do I use services or the servicespages?
 // Example: It's called productsArray
 
 
@@ -92,8 +92,8 @@ export function CartProvider({children}) {
     function getTotalCost() {
         let totalCost = 0;
         cartProducts.map((cartItem) => {
-            const serviceData = getServiceData(cartItem.id)
-            totalCost += (serviceData.price * cartItem.quantity)
+            // const serviceData = getServiceData(cartItem.id)
+            // totalCost += (serviceData.price * cartItem.quantity)
         })
 
     }

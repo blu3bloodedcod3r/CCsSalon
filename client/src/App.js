@@ -83,10 +83,6 @@ function App() {
                     path="/user" 
                     element={<User />} 
                   />
-                  <Route
-                    path="/services" 
-                    element={<Services/>} 
-                  />
                   <Route 
                     path="/admin" 
                     element={<Admin />} 

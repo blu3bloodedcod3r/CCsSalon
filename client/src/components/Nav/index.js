@@ -35,6 +35,11 @@ console.log('Auth', Auth.loggedIn())
               </Link>
             </li>
             <li className="mx-1">
+              <Link to="/user">
+                Profile
+              </Link>
+            </li>
+            <li className="mx-1">
               <Link to="/login">
                 Login
               </Link>

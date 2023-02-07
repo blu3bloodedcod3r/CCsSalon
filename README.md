@@ -4,7 +4,7 @@
 
 - Team motivation was to re-create a deployed website that would set appointment for the hair stylist and Allow these users to signup and login/log out.
 - This project was built with someone's sister in mind so her side business could grow with a webiste.
-- This solves the issue of keeping a paper calendar and creating a digital one.
+- This solves the issue of keeping a paper calendar and creating a digital one, lets customers pay a deposit for their appointment using Stripe and nodemailer to confirm appointment.
 - Our group learned how to execute research with errors and how to communicate with each other on what was being/ or had been done to that our group could help each other out.
 
 ## Table of Contents 
@@ -51,4 +51,4 @@ MIT
 
 ## Features
 
-Our features include user being able to create a user login, the ability to book appointments (if logged in) with an apoointment-picker provided by: https://www.npmjs.com/package/appointment-picker?activeTab=readme
+Our features include user being able to create a user login, the ability to book appointments (if logged in), pay a deposit in form of using Stripe and nodemailer to confirm appointment made.

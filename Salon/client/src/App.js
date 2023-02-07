@@ -8,7 +8,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+// stripe
 import { StoreProvider } from "./utils/GlobalContext"
+import CartProvider from '../src/components/Cart/cartContext'
 
 // import AppointmentPicker from 'appointment-picker';
 import Home from './pages/home'
@@ -21,8 +23,8 @@ import Book from './pages/book';
 import ModServices from './components/Services/ModServices';
 import Nav from './components/Nav/index';
 import Nomatch from './pages/nomatch'
-
-// import { StoreProvider } from './utils/GlobalState';
+import NavbarComponent from './pages/cart';
+// import Cart from './components/Cart/index'
 
 
 const httpLink = createHttpLink({
@@ -41,53 +43,65 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  // uri: '/graphql',
+  // uri: '/graphql', 
   cache: new InMemoryCache(),
 });
 
 function App() {
+
+  
   return (
     <ApolloProvider client={client}>
       <Router>
         <Header />
           <div className="flex-container">
-            <StoreProvider>
-              <Nav />
-              <Routes>
-                <Route 
-                  path="/" 
-                  element={<Home />} 
-                />
-                <Route 
-                  path="/login" 
-                  element={<Login />} 
-                />
-                <Route 
-                  path="/signup" 
-                  element={<Signup />} 
-                />
-                <Route 
-                  path="/appointment" 
-                  element={<Book />} 
-                />
-                <Route 
-                  path="/modservices" 
-                  element={<ModServices />} 
-                />
-                <Route
-                  path="/user" 
-                  element={<User />} 
-                />
-                <Route 
-                  path="/admin" 
-                  element={<Admin />} 
-                />
-                {/* <Route
-                  path="*" 
-                  element={<Nomatch />} 
-                /> */}
-              </Routes>
-            </StoreProvider>
+            <CartProvider>
+              <StoreProvider>
+                <Nav />
+                <Routes>
+                  <Route 
+                    path="/" 
+                    element={<Home />} 
+                  />
+                  <Route 
+                    path="/login" 
+                    element={<Login />} 
+                  />
+                  <Route 
+                    path="/signup" 
+                    element={<Signup />} 
+                  />
+                  <Route 
+                    path="/appointment/:serviceId" 
+                    element={<Book />} 
+                  />
+                  <Route 
+                    path="/modservices" 
+                    element={<ModServices />} 
+                  />
+                  <Route
+                    path="/user" 
+                    element={<User />} 
+                  />
+                  <Route
+                    path="/services" 
+                    element={<Services/>} 
+                  />
+                  <Route 
+                    path="/admin" 
+                    element={<Admin />} 
+                  />
+                  <Route
+                    path="*" 
+                    element={<Nomatch />} 
+                  />
+                  <Route
+                    path="/cart"
+                    element={<NavbarComponent />}
+                  />
+                </Routes>
+              </StoreProvider>
+            </CartProvider>
           </div>
       </Router>
     </ApolloProvider>

@@ -14,13 +14,18 @@ console.log('Auth', Auth.loggedIn())
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/home">
+            <Link to="/">
               Home
             </Link>
           </li>
           <li className="mx-1">
+<<<<<<< HEAD
+            <Link to="/user">
+              User
+=======
             <Link to="/appointment">
               Book
+>>>>>>> main
             </Link>
           </li>
           <li className="mx-1">

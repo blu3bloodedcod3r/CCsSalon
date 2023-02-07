@@ -10,7 +10,11 @@ return (
             <div className="slogan-box">
             <br></br>
             <p className="slogan">Your Hair Beauty, Our Duty</p>
+<<<<<<< HEAD
+            <br></br>
+=======
 
+>>>>>>> main
         <Link className="shop" to="/">
             <br></br>
           <span role="img" aria-label="shopping bag">🛍️</span>

@@ -42,6 +42,9 @@ span {
     text-align: center;
 }
 
+span {
+    justify-content: flex-end;
+}
 
 .sidebar {
     flex: 1 1 15%;
@@ -206,7 +209,7 @@ a {
     
     .header {
         font-size: 1.5rem;
-        width: 105vw;
+        width: auto;
     }
 
     li {

@@ -44,11 +44,6 @@ console.log('Auth', Auth.loggedIn())
                 Login
               </Link>
             </li>
-            < li className="mx-1">
-              <Link to="/cart">
-                Cart
-              </Link>
-            </li>
           </ul>
       );
     }

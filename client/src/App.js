@@ -7,7 +7,6 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
 // stripe
 import { StoreProvider } from "./utils/GlobalContext"
 import CartProvider from '../src/components/Cart/cartContext'
@@ -48,14 +47,11 @@ const client = new ApolloClient({
 });
 
 function App() {
-
-  
   return (
     <ApolloProvider client={client}>
       <Router>
         <Header />
           <div className="flex-container">
-            <CartProvider>
               <StoreProvider>
                 <Nav />
                 <Routes>
@@ -91,13 +87,12 @@ function App() {
                     path="*" 
                     element={<Nomatch />} 
                   />
-                  <Route
+                  {/* <Route
                     path="/cart"
                     element={<NavbarComponent />}
-                  />
+                  /> */}
                 </Routes>
               </StoreProvider>
-            </CartProvider>
           </div>
       </Router>
     </ApolloProvider>

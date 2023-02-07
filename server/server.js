@@ -2,7 +2,6 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-const routes = require('../client/src')
 // const dotenv = require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -28,7 +27,7 @@ app.use('/images', express.static(path.join(__dirname, '../client/images')));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-app.use(routes)
+app.use(rotes)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });

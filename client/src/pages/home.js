@@ -36,7 +36,7 @@ const Service = () => {
                   <li key={service.price}>Price: {service.price}</li>
                 </ul>
               </div>
-              <a href="/appointment/:serviceId" className="btn btn-primary">
+              <a href={`/appointment/${service._id}`} className="btn btn-primary">
                 Reserve an appointment now
               </a>
             </div>

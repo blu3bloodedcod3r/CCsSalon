@@ -38,18 +38,13 @@ const User = () => {
                   </th>
                   <td>{me.time}</td>
                   <td>{me.service.name}</td>
-                  <td> <button className='btn btn-block btn-danger'
-                  >
-                    Delete
-                  </button> </td>
                 </tr>
               </tbody>
             );
           })}
-          ;
         </table>
-        ;
         </div>
+        <p>If you need to cancel your appointment please reach out directly via Phone. Thank you!</p>
     </aside>
   );
 };

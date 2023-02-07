@@ -36,22 +36,22 @@ app.use('/images', express.static(path.join(__dirname, '../client/images')));
 // app.post("/api/sendmail", async (req, res) => {
 //   const {email} = req.body;
 
-  try {
-    const send_to = email;
-    const sent_from = process.env.EMAIL_USER;
-    const reply_to = email;
-    const subject = "Appointment Confirmation"
-    const message = `
-    <h3>Salon Reminder</h3>
-    <p>Hi, ${req.body.name}. This is a reminder that you have an appointment scheduled with on ${req.body.date} at ${req.body.time} for ${req.body.service}. Please reply YES to confirm, or to reschedule.</p>
-    `
-    await sendEmail(subject, message, send_to, sent_from, reply_to)
-    res.status(200).json({success: true, message: "Email Sent!"})
-  } catch (error) {
-    res.status(500).json(error.message)
-    console.log(err)
-  }
-});
+  // try {
+  //   const send_to = email;
+  //   const sent_from = process.env.EMAIL_USER;
+  //   const reply_to = email;
+  //   const subject = "Appointment Confirmation"
+  //   const message = `
+  //   <h3>Salon Reminder</h3>
+  //   <p>Hi, ${req.body.name}. This is a reminder that you have an appointment scheduled with on ${req.body.date} at ${req.body.time} for ${req.body.service}. Please reply YES to confirm, or to reschedule.</p>
+  //   `
+  //   await sendEmail(subject, message, send_to, sent_from, reply_to)
+  //   res.status(200).json({success: true, message: "Email Sent!"})
+  // } catch (error) {
+  //   res.status(500).json(error.message)
+  //   console.log(err)
+  // }
+// });
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));

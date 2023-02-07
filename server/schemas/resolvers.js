@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Appt, Services, Order } = require('../models');
 const { signToken } = require('../utils/auth');
+const testEmail = require('../utils/testemail');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // stripe key
 
 const resolvers = {
@@ -30,6 +31,8 @@ const resolvers = {
 
   Mutation: {
     login: async (parent, { email, password }) => {
+      console.log('+++++++email', email)
+      console.log('+++++++password', password)
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -43,7 +46,8 @@ const resolvers = {
       }
 
       const token = signToken(user);
-
+      console.log('+++++++token', token)
+      console.log('+++++++user', user)
       return { token, user };
     },
     addUser: async (parent, args) => {
@@ -54,10 +58,25 @@ const resolvers = {
     },
     makeAppt: async (parent, args, context) => {
       if (context.user) {
+        console.log("args", args)
         console.log("context", context.user)
         const appt = await Appt.create(args);
         console.log("appt", appt)
         await User.findByIdAndUpdate(context.user._id, { $push: { appts: appt } });
+        
+        try {
+          const sendTo = context.user.email;
+          const sentFrom = 'Test CCSalon email <test-noreply@ccsalon.com>'; // that's for development - put real email to reply to when in production
+          const replyTo = 'Test CCSalon email <test-noreply@ccsalon.com>';
+          const subject = 'Appointment Confirmation';
+          const message = `
+            <h3>Hello! ${context.user.name}</h3>
+            <p>Thank you for reserving an appointment with CC's Salon</p>
+          `;
+          await testEmail(subject, message, sendTo, sentFrom, replyTo)
+        } catch (error) {
+          console.log(error.message)
+        }
 
       return appt.populate('service')
       }

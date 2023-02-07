@@ -19,7 +19,7 @@ const Service = () => {
         {services.map((service) => (
           <div className="card" key={service.id}>
             <img
-              src={service.image}
+              src={require(`./images/${service.image}`)}
               className="card-img-top"
               alt="Service Placeholder"
             ></img>
@@ -36,7 +36,7 @@ const Service = () => {
                   <li key={service.price}>Price: {service.price}</li>
                 </ul>
               </div>
-              <a href="/appointment" className="btn btn-primary">
+              <a href={`/appointment/${service._id}`} className="btn btn-primary">
                 Reserve an appointment now
               </a>
             </div>

@@ -23,7 +23,7 @@ Be sure to 'npm i' so that all dependencies can be used properly with the websit
 
 User must be logged in in order to complete an appointment or they will be redirected to login page or user must sign up if they do not already have login information created.
 
-![Screenshot of initial webpage]()
+![Screenshot of initial webpage](../CCsSalon/Salon/images/Screenshot%202023-02-06%20204309.png)
 
 ## Deployment
 You can see the application deployed [here]()

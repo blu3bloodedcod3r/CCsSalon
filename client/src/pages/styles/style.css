@@ -19,21 +19,6 @@ h1{
     font-size: 3.5rem;
 }
 
-.slogan {
-    font-size: 2rem;
-    margin-left: 150px;
-}
-
-.slogan-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-span {
-    justify-content: flex-end;
-}
-
 .header {
     background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdg-gTpJQVxeZp1P8WfymtepP_iCQWx1P2rw7K37ZyngvtO7cK5icexEhnosK-vHX9Qlk&usqp=CAU);
     height: 9rem;

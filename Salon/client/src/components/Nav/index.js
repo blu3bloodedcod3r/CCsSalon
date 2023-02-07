@@ -11,20 +11,13 @@ console.log('Auth', Auth.loggedIn())
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/home">
+            <Link to="/">
               Home
             </Link>
           </li>
           <li className="mx-1">
-              <Link to="/services">
-                Services
-              </Link>
-            </li>
-            <br></br>
-            <br></br>
-          <li className="mx-1">
             <Link to="/user">
-              Your Appointments
+              User
             </Link>
           </li>
           <li className="mx-1">
@@ -38,11 +31,6 @@ console.log('Auth', Auth.loggedIn())
     else {
       return (
           <ul className="flex-row">
-            <li className="mx-1">
-              <Link to="/services">
-                Services
-              </Link>
-            </li>
             <li className="mx-1">
               <Link to="/signup">
                 Signup

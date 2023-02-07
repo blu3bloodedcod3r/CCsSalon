@@ -34,7 +34,7 @@ const Login = (props) => {
       } catch (e) {
         console.error(e);
       } 
-      // window.location.href ='/';
+      window.location.href ='/user';
     };
 
 return (

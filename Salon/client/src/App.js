@@ -11,6 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import { StoreProvider } from "./utils/GlobalContext"
 
 // import AppointmentPicker from 'appointment-picker';
+import Home from './pages/home'
 import Header from './components/header'
 import Services from './pages/servicespage';
 import User from './pages/user';
@@ -20,6 +21,8 @@ import Signup from './pages/signup';
 import Book from './pages/book';
 import ModServices from './components/Services/ModServices';
 import Nav from './components/Nav/index';
+import Nomatch from './pages/nomatch'
+
 // import { StoreProvider } from './utils/GlobalState';
 
 
@@ -75,10 +78,6 @@ function App() {
                 <Route
                   path="/user" 
                   element={<User />} 
-                />
-                <Route
-                  path="/services" 
-                  element={<Services/>} 
                 />
                 <Route 
                   path="/admin" 

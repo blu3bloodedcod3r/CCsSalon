@@ -38,6 +38,9 @@ h1{
     text-align: center;
 }
 
+span {
+    justify-content: flex-end;
+}
 
 .sidebar {
     flex: 1 1 15%;
@@ -202,7 +205,7 @@ a {
     
     .header {
         font-size: 1.5rem;
-        width: 105vw;
+        width: auto;
     }
 
     li {
@@ -258,7 +261,7 @@ a {
 
     .header {
         font-size: 6rem;
-        height: 8vh;
+        height: 14vh;
         width: 130vw;
     }
 

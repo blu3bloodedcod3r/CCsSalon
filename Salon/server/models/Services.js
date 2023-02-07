@@ -17,9 +17,31 @@ const servicesSchema = new Schema({
   duration: {
     type: String,
   },
-  filename: {
+  image: {
     type: String,
   },
+  reviews: [
+    {
+      reviewText: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 280,
+      },
+      reviewAuthor: {
+        type: String,
+        required: true,
+      },
+      reviewImg: {
+        type: String,
+      },
+      // createdAt: {
+      //   type: Date,
+      //   default: Date.now,
+      //   get: (timestamp) => dateFormat(timestamp),
+      // },
+    },
+  ],
 });
 
 const Services = mongoose.model('Services', servicesSchema);    

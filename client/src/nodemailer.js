@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+
  // create reusable transporter object 
 const transporter = nodemailer.createTransport({
     service: 'outlook',
@@ -12,7 +13,7 @@ const options = {
     from: "BizCCsSalon@outlook.com",
     to: "brown.calah@hotmail.com",
     subject: "Email Confirmation",
-    text: "Hello, [First and Last Name]. This is [Receptionist] with [Hair Salon]. I have you scheduled for a [Service] with [Stylist] on [Date] at [Time]. Is there anything else I can help you with?"
+    text: `Hello, ${req.body.name}. This is CC's Hair Salon]. I have you scheduled for a ${req.body.service} with the Stylist on ${req.body.date} at ${req.body.time}. Is there anything else I can help you with?`
 };
 
 // Send Email

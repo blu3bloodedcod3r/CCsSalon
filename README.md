@@ -26,7 +26,7 @@ User must be logged in in order to complete an appointment or they will be redir
 ![Screenshot of initial webpage]()
 
 ## Deployment
-You can see the application deployed [here]()
+You can see the application deployed here: [Heroku](https://projectsalon.herokuapp.com/)
 
 ReRepository for CC's Salon can be found at: [GitHub](https://github.com/blu3bloodedcod3r/CCsSalon)
 

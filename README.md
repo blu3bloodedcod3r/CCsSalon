@@ -23,10 +23,11 @@ Be sure to 'npm i' so that all dependencies can be used properly with the websit
 
 User must be logged in in order to complete an appointment or they will be redirected to login page or user must sign up if they do not already have login information created.
 
-![Screenshot of initial webpage](../CCsSalon/Salon/images/Screenshot%202023-02-06%20204309.png)
+![Home Page](./images/homepage.png)
+![Login Page](./images/loginpage.png)
 
 ## Deployment
-You can see the application deployed [here]()
+You can see the application deployed here: [Heroku](https://projectsalon.herokuapp.com/)
 
 ReRepository for CC's Salon can be found at: [GitHub](https://github.com/blu3bloodedcod3r/CCsSalon)
 
@@ -51,4 +52,4 @@ MIT
 
 ## Features
 
-Our features include user being able to create a user login, the ability to book appointments (if logged in), pay a deposit in form of using Stripe and nodemailer to confirm appointment made.
+Our features include user being able to create a user login, the ability to book appointments (if logged in).
